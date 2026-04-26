@@ -1,0 +1,6 @@
+Evaluation Report
+-----------------------------------
+Accuracy: 92.50%
+Precision: 0.9276
+Recall: 0.9249
+F1-Score: 0.9238

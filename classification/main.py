@@ -62,6 +62,8 @@ def get_args_parser():
     parser = argparse.ArgumentParser('TransNeXt training and evaluation script', add_help=False)
     parser.add_argument('--fp32-resume', action='store_true', default=False)
     parser.add_argument('--batch-size', default=128, type=int)
+    parser.add_argument('--eval-batch-size', default=16, type=int,
+                        help='validation batch size used when --eval is set')
     parser.add_argument('--epochs', default=300, type=int)
     parser.add_argument('--update-freq', default=1, type=int,
                         help='Number of steps to accumulate gradients when updating parameters, set to 1 to disable this feature')
@@ -176,10 +178,16 @@ def get_args_parser():
     parser.add_argument('--finetune', default='', help='finetune from checkpoint')
 
     # Dataset parameters
-    parser.add_argument('--data-path', default='', type=str,
+    parser.add_argument('--data-path', default='data', type=str,
                         help='dataset path')
     parser.add_argument('--data-set', default='IMNET', choices=['CIFAR', 'IMNET', 'INAT', 'INAT19'],
                         type=str, help='Image Net dataset path')
+    parser.add_argument('--imagenet-class-index', default='', type=str,
+                        help='optional path to ImageNet class index JSON for WNID->1K label remapping during eval')
+    parser.add_argument('--strict-imagenet-class-index', action='store_true', default=True,
+                        help='fail if val classes are missing in --imagenet-class-index')
+    parser.add_argument('--no-strict-imagenet-class-index', action='store_false', dest='strict_imagenet_class_index',
+                        help='allow missing class mappings and keep original subset labels for them')
     parser.add_argument('--use-mcloader', action='store_true', default=False, help='Use mcloader')
     parser.add_argument('--inat-category', default='name',
                         choices=['kingdom', 'phylum', 'class', 'order', 'supercategory', 'family', 'genus', 'name'],
@@ -187,7 +195,7 @@ def get_args_parser():
 
     parser.add_argument('--output_dir', default='',
                         help='path where to save, empty for no saving')
-    parser.add_argument('--device', default='cuda',
+    parser.add_argument('--device', default='auto',
                         help='device to use for training / testing')
     parser.add_argument('--seed', default=0, type=int)
     parser.add_argument('--resume', default='', help='resume from checkpoint')
@@ -195,7 +203,9 @@ def get_args_parser():
                         help='start epoch')
     parser.add_argument('--eval', action='store_true', help='Perform evaluation only')
     parser.add_argument('--dist-eval', action='store_true', default=False, help='Enabling distributed evaluation')
-    parser.add_argument('--num_workers', default=10, type=int)
+    parser.add_argument('--disable-distributed', action='store_true', default=False,
+                        help='force single-process mode (no torch.distributed init)')
+    parser.add_argument('--num_workers', default=0, type=int)
     parser.add_argument('--pin-mem', action='store_true',
                         help='Pin CPU memory in DataLoader for more efficient (sometimes) transfer to GPU.')
     parser.add_argument('--no-pin-mem', action='store_false', dest='pin_mem',
@@ -216,7 +226,20 @@ def get_args_parser():
 
 
 def main(args):
-    utils.init_distributed_mode(args)
+    if args.disable_distributed:
+        args.distributed = False
+    else:
+        utils.init_distributed_mode(args)
+
+    if args.device == 'auto':
+        args.device = 'cuda' if torch.cuda.is_available() else 'cpu'
+    elif args.device.startswith('cuda') and not torch.cuda.is_available():
+        print('CUDA not available, falling back to CPU')
+        args.device = 'cpu'
+
+    if args.eval:
+        args.dist_eval = False
+
     print(args)
     # if args.distillation_type != 'none' and args.finetune and not args.eval:
     #     raise NotImplementedError("Finetuning with distillation not yet supported")
@@ -229,25 +252,33 @@ def main(args):
     np.random.seed(seed)
     # random.seed(seed)
 
-    cudnn.benchmark = True
+    cudnn.benchmark = (device.type == 'cuda')
 
-    dataset_train, args.nb_classes = build_dataset(is_train=True, args=args)
-    dataset_val, _ = build_dataset(is_train=False, args=args)
+    if args.eval:
+        dataset_train = None
+        dataset_val, args.nb_classes = build_dataset(is_train=False, args=args)
+        if args.data_set == 'IMNET' and not args.imagenet_class_index:
+            print('Warning: --imagenet-class-index is not provided; '
+                  'subset val folders will be re-indexed by ImageFolder and may not match 1K checkpoint labels.')
+    else:
+        dataset_train, args.nb_classes = build_dataset(is_train=True, args=args)
+        dataset_val, _ = build_dataset(is_train=False, args=args)
 
-    if True:  # args.distributed:
+    if args.distributed:
         num_tasks = utils.get_world_size()
         global_rank = utils.get_rank()
-        if args.repeated_aug:
+        if dataset_train is not None and args.repeated_aug:
             sampler_train = RASampler(
                 dataset_train, num_replicas=num_tasks, rank=global_rank, shuffle=True
             )
-        else:
+        elif dataset_train is not None:
             sampler_train = torch.utils.data.DistributedSampler(
                 dataset_train,
-                # num_replicas=num_tasks,
-                num_replicas=0,
+                num_replicas=num_tasks,
                 rank=global_rank, shuffle=True
             )
+        else:
+            sampler_train = None
         if args.dist_eval:
             if len(dataset_val) % num_tasks != 0:
                 print('Warning: Enabling distributed evaluation with an eval dataset not divisible by process number. '
@@ -255,26 +286,27 @@ def main(args):
                       'equal num of samples per-process.')
             sampler_val = torch.utils.data.DistributedSampler(
                 dataset_val,
-                # num_replicas=num_tasks,
-                num_replicas=0,
+                num_replicas=num_tasks,
                 rank=global_rank, shuffle=False)
         else:
             sampler_val = torch.utils.data.SequentialSampler(dataset_val)
     else:
-        sampler_train = torch.utils.data.RandomSampler(dataset_train)
+        sampler_train = torch.utils.data.RandomSampler(dataset_train) if dataset_train is not None else None
         sampler_val = torch.utils.data.SequentialSampler(dataset_val)
 
-    data_loader_train = torch.utils.data.DataLoader(
-        dataset_train, sampler=sampler_train,
-        batch_size=args.batch_size,
-        num_workers=args.num_workers,
-        pin_memory=args.pin_mem,
-        drop_last=True,
-    )
+    data_loader_train = None
+    if dataset_train is not None:
+        data_loader_train = torch.utils.data.DataLoader(
+            dataset_train, sampler=sampler_train,
+            batch_size=args.batch_size,
+            num_workers=args.num_workers,
+            pin_memory=args.pin_mem,
+            drop_last=True,
+        )
 
     data_loader_val = torch.utils.data.DataLoader(
         dataset_val, sampler=sampler_val,
-        batch_size=int(1.5 * args.batch_size),
+        batch_size=args.eval_batch_size if args.eval else int(1.5 * args.batch_size),
         num_workers=args.num_workers,
         pin_memory=args.pin_mem,
         drop_last=False
@@ -346,7 +378,7 @@ def main(args):
     print("Batch size = %d" % total_batch_size)
     print("Update frequent = %d" % args.update_freq)
     optimizer = build_optimizer(args, model_without_ddp)
-    loss_scaler = NativeScalerAccum()
+    loss_scaler = NativeScalerAccum(enabled=(device.type == 'cuda'))
     lr_scheduler, _ = create_scheduler(args, optimizer)
 
     if args.mixup > 0.:
@@ -431,7 +463,7 @@ def main(args):
     for epoch in range(args.start_epoch, args.epochs):
         if args.fp32_resume and epoch > args.start_epoch + 1:
             args.fp32_resume = False
-        loss_scaler._scaler = torch.cuda.amp.GradScaler(enabled=not args.fp32_resume)
+        loss_scaler._scaler = torch.cuda.amp.GradScaler(enabled=(device.type == 'cuda' and not args.fp32_resume))
 
         if args.distributed:
             data_loader_train.sampler.set_epoch(epoch)

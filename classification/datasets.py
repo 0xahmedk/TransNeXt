@@ -11,6 +11,51 @@ from timm.data import create_transform
 from mcloader import ClassificationDataset
 
 
+def load_imagenet_wnid_to_idx_map(class_index_path):
+    with open(class_index_path, 'r') as f:
+        class_index = json.load(f)
+
+    if not isinstance(class_index, dict):
+        raise ValueError(f'Invalid class index format in {class_index_path}')
+
+    first_key = next(iter(class_index.keys()), None)
+    if first_key is None:
+        raise ValueError(f'Empty class index file: {class_index_path}')
+
+    if first_key.startswith('n'):
+        return {wnid: int(idx) for wnid, idx in class_index.items()}
+
+    wnid_to_idx = {}
+    for idx_str, value in class_index.items():
+        if not isinstance(value, (list, tuple)) or len(value) < 1:
+            raise ValueError(f'Invalid class index entry for key {idx_str}')
+        wnid_to_idx[value[0]] = int(idx_str)
+    return wnid_to_idx
+
+
+def remap_imagefolder_targets_with_wnid_map(dataset, wnid_to_idx, strict=True):
+    missing_wnids = [wnid for wnid in dataset.classes if wnid not in wnid_to_idx]
+    if missing_wnids:
+        sample_missing = ', '.join(missing_wnids[:5])
+        msg = f'Missing WNIDs in class map (examples: {sample_missing})'
+        if strict:
+            raise ValueError(msg)
+        print(f'Warning: {msg}; keeping original targets for missing classes')
+
+    remapped_samples = []
+    remapped_targets = []
+    for path, subset_target in dataset.samples:
+        wnid = dataset.classes[subset_target]
+        target = wnid_to_idx.get(wnid, subset_target)
+        remapped_samples.append((path, target))
+        remapped_targets.append(target)
+
+    dataset.samples = remapped_samples
+    dataset.imgs = remapped_samples
+    dataset.targets = remapped_targets
+    return dataset
+
+
 class INatDataset(ImageFolder):
     def __init__(self, root, train=True, year=2018, transform=None, target_transform=None,
                  category='name', loader=default_loader):
@@ -64,12 +109,22 @@ def build_dataset(is_train, args):
         if not args.use_mcloader:
             root = os.path.join(args.data_path, 'train' if is_train else 'val')
             dataset = datasets.ImageFolder(root, transform=transform)
+            class_index_path = getattr(args, 'imagenet_class_index', '')
+            eval_with_imagenet_1k_labels = (not is_train) and bool(class_index_path)
+            if class_index_path and not is_train:
+                wnid_to_idx = load_imagenet_wnid_to_idx_map(class_index_path)
+                dataset = remap_imagefolder_targets_with_wnid_map(
+                    dataset,
+                    wnid_to_idx,
+                    strict=getattr(args, 'strict_imagenet_class_index', True)
+                )
+            nb_classes = 1000 if eval_with_imagenet_1k_labels else len(dataset.classes)
         else:
             dataset = ClassificationDataset(
                 'train' if is_train else 'val',
                 pipeline=transform
             )
-        nb_classes = 1000
+            nb_classes = 1000
     elif args.data_set == 'INAT':
         dataset = INatDataset(args.data_path, train=is_train, year=2018,
                               category=args.inat_category, transform=transform)

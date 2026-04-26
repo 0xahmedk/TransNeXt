@@ -7,13 +7,17 @@ Mostly copy-paste from torchvision references.
 """
 import io
 import os
+import runpy
 import time
 from collections import defaultdict, deque
 import datetime
 
 import torch
 import torch.distributed as dist
-import mmcv
+try:
+    import mmcv
+except ImportError:
+    mmcv = None
 
 class SmoothedValue(object):
     """Track a series of values and provide access to smoothed values over a
@@ -214,6 +218,11 @@ def save_on_master(*args, **kwargs):
 
 
 def init_distributed_mode(args):
+    if getattr(args, 'disable_distributed', False):
+        print('Distributed mode disabled by flag')
+        args.distributed = False
+        return
+
     if 'RANK' in os.environ and 'WORLD_SIZE' in os.environ:
         args.rank = int(os.environ["RANK"])
         args.world_size = int(os.environ['WORLD_SIZE'])
@@ -239,8 +248,16 @@ def init_distributed_mode(args):
 
 
 def update_from_config(args):
-    cfg = mmcv.Config.fromfile(args.config)
-    for _, cfg_item in cfg._cfg_dict.items():
-        for k, v in cfg_item.items():
+    if mmcv is not None:
+        cfg = mmcv.Config.fromfile(args.config)
+        for _, cfg_item in cfg._cfg_dict.items():
+            for k, v in cfg_item.items():
+                setattr(args, k, v)
+        return args
+
+    cfg_globals = runpy.run_path(args.config)
+    cfg = cfg_globals.get('cfg', None)
+    if isinstance(cfg, dict):
+        for k, v in cfg.items():
             setattr(args, k, v)
     return args

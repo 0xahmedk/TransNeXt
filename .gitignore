@@ -1,0 +1,10 @@
+data/
+classification/*.pth
+classification/data
+runs/*_finetune_pets_plots/
+runs/*_evaluation_report/
+checkpoints/
+checkpoints/*.pth
+models/
+models/*.pth
+*.pth

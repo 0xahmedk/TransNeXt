@@ -1,0 +1,54 @@
+/home/applivity/ahmedk/msai/2ndsem/dl/TransNeXt/classification/main.py:48: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+swattention package not found, loading PyTorch native version of Aggregated Attention
+Namespace(fp32_resume=False, batch_size=16, eval_batch_size=16, epochs=300, update_freq=1, config='classification/configs/transnext_micro.py', model='transnext_micro', input_size=224, pretrain_size=None, fixed_pool_size=None, drop=0.0, drop_path=0.15, opt='adamw', opt_eps=1e-08, opt_betas=None, clip_grad=1.0, momentum=0.9, weight_decay=0.05, sched='cosine', lr=0.001, lr_noise=None, lr_noise_pct=0.67, lr_noise_std=1.0, warmup_lr=1e-06, min_lr=1e-05, decay_epochs=30, warmup_epochs=5, cooldown_epochs=10, patience_epochs=10, decay_rate=0.1, color_jitter=0.4, aa='rand-m9-mstd0.5-inc1', smoothing=0.1, train_interpolation='bicubic', repeated_aug=True, reprob=0.25, remode='pixel', recount=1, resplit=False, mixup=0.8, cutmix=1.0, cutmix_minmax=None, mixup_prob=1.0, mixup_switch_prob=0.5, mixup_mode='batch', finetune='', data_path='data/imagenet-100', data_set='IMNET', imagenet_class_index='data/imagenet_class_index.json', strict_imagenet_class_index=True, use_mcloader=False, inat_category='name', output_dir='checkpoints/transnext_micro', device='cpu', seed=0, resume='models/transnext_micro_224_1k.pth', start_epoch=0, eval=True, dist_eval=False, disable_distributed=True, num_workers=0, pin_mem=False, compile_model=False, cache_size_limit=128, world_size=1, dist_url='env://', distributed=False)
+Creating model: transnext_micro
+/home/applivity/.local/lib/python3.12/site-packages/torch/functional.py:505: UserWarning: torch.meshgrid: in an upcoming release, it will be required to pass the indexing argument. (Triggered internally at /pytorch/aten/src/ATen/native/TensorShape.cpp:4381.)
+  return _VF.meshgrid(tensors, **kwargs)  # type: ignore[attr-defined]
+number of params: 12809304
+LR = 0.00100000
+Batch size = 16
+Update frequent = 1
+/home/applivity/ahmedk/msai/2ndsem/dl/TransNeXt/classification/engine.py:108: FutureWarning: `torch.cuda.amp.GradScaler(args...)` is deprecated. Please use `torch.amp.GradScaler('cuda', args...)` instead.
+  self._scaler = torch.cuda.amp.GradScaler()
+/home/applivity/.local/lib/python3.12/site-packages/torch/cuda/amp/grad_scaler.py:31: UserWarning: torch.cuda.amp.GradScaler is enabled, but CUDA is not available.  Disabling.
+  super().__init__(
+<All keys matched successfully>
+/home/applivity/ahmedk/msai/2ndsem/dl/TransNeXt/classification/engine.py:86: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(enabled=(device.type == 'cuda')):
+Test:  [  0/313]  eta: 0:11:43  loss: 0.7996 (0.7996)  acc1: 87.5000 (87.5000)  acc5: 93.7500 (93.7500)  time: 2.2477  data: 0.0884
+Test:  [ 10/313]  eta: 0:12:40  loss: 0.3951 (0.4583)  acc1: 93.7500 (90.3409)  acc5: 100.0000 (97.1591)  time: 2.5105  data: 0.1215
+Test:  [ 20/313]  eta: 0:12:06  loss: 0.3858 (0.4602)  acc1: 87.5000 (90.1786)  acc5: 100.0000 (97.6190)  time: 2.4898  data: 0.1123
+Test:  [ 30/313]  eta: 0:11:46  loss: 0.3826 (0.4747)  acc1: 87.5000 (89.3145)  acc5: 100.0000 (97.7823)  time: 2.4883  data: 0.0986
+Test:  [ 40/313]  eta: 0:11:20  loss: 0.2549 (0.4405)  acc1: 93.7500 (90.5488)  acc5: 100.0000 (98.1707)  time: 2.5089  data: 0.0978
+Test:  [ 50/313]  eta: 0:10:56  loss: 0.2549 (0.4376)  acc1: 93.7500 (91.0539)  acc5: 100.0000 (98.0392)  time: 2.4926  data: 0.0961
+Test:  [ 60/313]  eta: 0:10:33  loss: 0.3770 (0.4514)  acc1: 93.7500 (90.2664)  acc5: 100.0000 (98.1557)  time: 2.5280  data: 0.1112
+Test:  [ 70/313]  eta: 0:10:07  loss: 0.4338 (0.4990)  acc1: 93.7500 (88.9965)  acc5: 100.0000 (98.0634)  time: 2.5176  data: 0.1150
+Test:  [ 80/313]  eta: 0:09:44  loss: 0.8879 (0.5643)  acc1: 68.7500 (86.2654)  acc5: 100.0000 (98.0710)  time: 2.5144  data: 0.1124
+Test:  [ 90/313]  eta: 0:09:18  loss: 0.5830 (0.5550)  acc1: 87.5000 (86.8132)  acc5: 100.0000 (98.0769)  time: 2.5188  data: 0.1075
+Test:  [100/313]  eta: 0:08:54  loss: 0.5373 (0.5735)  acc1: 87.5000 (86.0149)  acc5: 100.0000 (97.9579)  time: 2.5231  data: 0.1000
+Test:  [110/313]  eta: 0:08:29  loss: 0.5980 (0.6081)  acc1: 75.0000 (85.2477)  acc5: 100.0000 (97.7477)  time: 2.5338  data: 0.1095
+Test:  [120/313]  eta: 0:08:03  loss: 0.5980 (0.6039)  acc1: 81.2500 (85.4855)  acc5: 100.0000 (97.8306)  time: 2.4929  data: 0.1011
+Test:  [130/313]  eta: 0:07:39  loss: 0.6680 (0.6433)  acc1: 81.2500 (84.3511)  acc5: 100.0000 (97.8053)  time: 2.5053  data: 0.0923
+Test:  [140/313]  eta: 0:07:13  loss: 0.9357 (0.6663)  acc1: 75.0000 (83.6879)  acc5: 100.0000 (97.6507)  time: 2.5010  data: 0.0947
+Test:  [150/313]  eta: 0:06:48  loss: 0.7608 (0.6674)  acc1: 81.2500 (83.3195)  acc5: 100.0000 (97.6407)  time: 2.5047  data: 0.0963
+Test:  [160/313]  eta: 0:06:24  loss: 0.7356 (0.6857)  acc1: 81.2500 (82.6087)  acc5: 100.0000 (97.6708)  time: 2.5843  data: 0.1074
+Test:  [170/313]  eta: 0:06:00  loss: 0.8086 (0.6932)  acc1: 81.2500 (82.7851)  acc5: 93.7500 (97.4781)  time: 2.6301  data: 0.1185
+Test:  [180/313]  eta: 0:05:37  loss: 0.5909 (0.6863)  acc1: 87.5000 (83.2528)  acc5: 93.7500 (97.3757)  time: 2.7089  data: 0.1108
+Test:  [190/313]  eta: 0:05:12  loss: 0.1945 (0.6630)  acc1: 100.0000 (83.9332)  acc5: 100.0000 (97.4476)  time: 2.6879  data: 0.1022
+Test:  [200/313]  eta: 0:04:47  loss: 0.1226 (0.6414)  acc1: 100.0000 (84.6393)  acc5: 100.0000 (97.5435)  time: 2.6281  data: 0.1011
+Test:  [210/313]  eta: 0:04:24  loss: 0.1203 (0.6267)  acc1: 100.0000 (85.1303)  acc5: 100.0000 (97.6007)  time: 2.8310  data: 0.1063
+Test:  [220/313]  eta: 0:04:01  loss: 0.2625 (0.6137)  acc1: 93.7500 (85.5486)  acc5: 100.0000 (97.6810)  time: 3.0884  data: 0.1126
+Test:  [230/313]  eta: 0:03:36  loss: 0.4738 (0.6193)  acc1: 93.7500 (85.6061)  acc5: 100.0000 (97.6461)  time: 3.0843  data: 0.1088
+Test:  [240/313]  eta: 0:03:12  loss: 0.5392 (0.6141)  acc1: 93.7500 (85.8402)  acc5: 100.0000 (97.6400)  time: 3.0246  data: 0.1058
+Test:  [250/313]  eta: 0:02:46  loss: 0.4095 (0.6040)  acc1: 93.7500 (86.1554)  acc5: 100.0000 (97.7092)  time: 2.9394  data: 0.1093
+Test:  [260/313]  eta: 0:02:20  loss: 0.4532 (0.6118)  acc1: 93.7500 (86.1111)  acc5: 100.0000 (97.6772)  time: 2.8784  data: 0.1188
+Test:  [270/313]  eta: 0:01:54  loss: 0.5348 (0.6084)  acc1: 87.5000 (86.2777)  acc5: 100.0000 (97.6707)  time: 2.8233  data: 0.1118
+Test:  [280/313]  eta: 0:01:27  loss: 0.2254 (0.5935)  acc1: 93.7500 (86.6993)  acc5: 100.0000 (97.7536)  time: 2.8350  data: 0.1071
+Test:  [290/313]  eta: 0:01:01  loss: 0.2254 (0.5871)  acc1: 93.7500 (86.8342)  acc5: 100.0000 (97.8093)  time: 2.8536  data: 0.1125
+Test:  [300/313]  eta: 0:00:34  loss: 0.2329 (0.5774)  acc1: 93.7500 (87.1470)  acc5: 100.0000 (97.8405)  time: 2.6439  data: 0.1020
+Test:  [310/313]  eta: 0:00:07  loss: 0.1797 (0.5657)  acc1: 100.0000 (87.4799)  acc5: 100.0000 (97.8899)  time: 2.5016  data: 0.0951
+Test:  [312/313]  eta: 0:00:02  loss: 0.1959 (0.5652)  acc1: 100.0000 (87.5000)  acc5: 100.0000 (97.8600)  time: 2.4285  data: 0.0920
+Test: Total time: 0:13:49 (2.6497 s / it)
+* Acc@1 87.500 Acc@5 97.860 loss 0.565
+Accuracy of the network on the 5000 test images: 87.5%

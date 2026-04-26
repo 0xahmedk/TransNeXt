@@ -1,0 +1,525 @@
+bash full_train_in100.sh      
+
+[full-train-in100] preparing dataset links
+[prepare-in100] linking train -> train.X1
+[prepare-in100] linking val -> val.from_train_X1 (class-aligned with train)
+[prepare-in100] train classes: 25
+[prepare-in100] val classes:   25
+[prepare-in100] NOTE: training on subset shard 'train.X1' with 25 classes (not full IN100).
+[prepare-in100] done
+[full-train-in100] python: /usr/bin/python3
+[full-train-in100] python version: 3.12.3
+[full-train-in100] device: cpu
+[full-train-in100] starting training...
+/home/applivity/ahmedk/msai/2ndsem/dl/TransNeXt/classification/main.py:48: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+swattention package not found, loading PyTorch native version of Aggregated Attention
+Namespace(fp32_resume=False, batch_size=32, eval_batch_size=32, epochs=300, update_freq=1, config='classification/configs/transnext_micro.py', model='transnext_micro', input_size=224, pretrain_size=None, fixed_pool_size=None, drop=0.0, drop_path=0.15, opt='adamw', opt_eps=1e-08, opt_betas=None, clip_grad=1.0, momentum=0.9, weight_decay=0.05, sched='cosine', lr=0.001, lr_noise=None, lr_noise_pct=0.67, lr_noise_std=1.0, warmup_lr=1e-06, min_lr=1e-05, decay_epochs=30, warmup_epochs=5, cooldown_epochs=10, patience_epochs=10, decay_rate=0.1, color_jitter=0.4, aa='rand-m9-mstd0.5-inc1', smoothing=0.0, train_interpolation='bicubic', repeated_aug=True, reprob=0.25, remode='pixel', recount=1, resplit=False, mixup=0.0, cutmix=0.0, cutmix_minmax=None, mixup_prob=1.0, mixup_switch_prob=0.5, mixup_mode='batch', finetune='', data_path='data/imagenet-100', data_set='IMNET', imagenet_class_index='', strict_imagenet_class_index=True, use_mcloader=False, inat_category='name', output_dir='checkpoints/transnext_micro', device='cpu', seed=0, resume='', start_epoch=0, eval=False, dist_eval=False, disable_distributed=True, num_workers=0, pin_mem=False, compile_model=False, cache_size_limit=128, world_size=1, dist_url='env://', distributed=False)
+Creating model: transnext_micro
+/home/applivity/.local/lib/python3.12/site-packages/torch/functional.py:505: UserWarning: torch.meshgrid: in an upcoming release, it will be required to pass the indexing argument. (Triggered internally at /pytorch/aten/src/ATen/native/TensorShape.cpp:4381.)
+  return _VF.meshgrid(tensors, **kwargs)  # type: ignore[attr-defined]
+number of params: 12433929
+LR = 0.00100000
+Batch size = 32
+Update frequent = 1
+/home/applivity/ahmedk/msai/2ndsem/dl/TransNeXt/classification/engine.py:109: FutureWarning: `torch.cuda.amp.GradScaler(args...)` is deprecated. Please use `torch.amp.GradScaler('cuda', args...)` instead.
+  self._scaler = torch.cuda.amp.GradScaler(enabled=enabled)
+Start training for 300 epochs
+/home/applivity/ahmedk/msai/2ndsem/dl/TransNeXt/classification/main.py:466: FutureWarning: `torch.cuda.amp.GradScaler(args...)` is deprecated. Please use `torch.amp.GradScaler('cuda', args...)` instead.
+  loss_scaler._scaler = torch.cuda.amp.GradScaler(enabled=(device.type == 'cuda' and not args.fp32_resume))
+/home/applivity/ahmedk/msai/2ndsem/dl/TransNeXt/classification/engine.py:39: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(enabled=(device.type == 'cuda' and not fp32)):
+Epoch: [0]  [   0/1015]  eta: 3:46:01  lr: 0.000001  loss: 3.2554 (3.2554)  time: 13.3615  data: 0.1878
+Epoch: [0]  [  10/1015]  eta: 3:29:23  lr: 0.000001  loss: 3.2554 (3.2493)  time: 12.5009  data: 0.1916
+Epoch: [0]  [  20/1015]  eta: 3:19:49  lr: 0.000001  loss: 3.2583 (3.2482)  time: 11.9842  data: 0.1930
+Epoch: [0]  [  30/1015]  eta: 3:14:24  lr: 0.000001  loss: 3.2588 (3.2496)  time: 11.4797  data: 0.1879
+Epoch: [0]  [  40/1015]  eta: 3:10:01  lr: 0.000001  loss: 3.2505 (3.2516)  time: 11.3203  data: 0.1877
+Epoch: [0]  [  50/1015]  eta: 3:06:05  lr: 0.000001  loss: 3.2439 (3.2470)  time: 11.1507  data: 0.1964
+Epoch: [0]  [  60/1015]  eta: 3:02:42  lr: 0.000001  loss: 3.2237 (3.2461)  time: 11.0395  data: 0.1912
+Epoch: [0]  [  70/1015]  eta: 2:59:28  lr: 0.000001  loss: 3.2374 (3.2442)  time: 10.9469  data: 0.1880
+Epoch: [0]  [  80/1015]  eta: 2:56:37  lr: 0.000001  loss: 3.2318 (3.2423)  time: 10.8897  data: 0.1899
+Epoch: [0]  [  90/1015]  eta: 2:54:13  lr: 0.000001  loss: 3.2168 (3.2392)  time: 10.9674  data: 0.1900
+Epoch: [0]  [ 100/1015]  eta: 2:52:03  lr: 0.000001  loss: 3.2060 (3.2371)  time: 11.0745  data: 0.1908
+Epoch: [0]  [ 110/1015]  eta: 2:50:00  lr: 0.000001  loss: 3.2047 (3.2347)  time: 11.1338  data: 0.1924
+Epoch: [0]  [ 120/1015]  eta: 2:48:00  lr: 0.000001  loss: 3.2193 (3.2335)  time: 11.1641  data: 0.1904
+Epoch: [0]  [ 130/1015]  eta: 2:45:53  lr: 0.000001  loss: 3.2288 (3.2327)  time: 11.1139  data: 0.1857
+Epoch: [0]  [ 140/1015]  eta: 2:43:40  lr: 0.000001  loss: 3.2228 (3.2323)  time: 10.9830  data: 0.1839
+Epoch: [0]  [ 150/1015]  eta: 2:41:45  lr: 0.000001  loss: 3.2053 (3.2297)  time: 11.0484  data: 0.1807
+Epoch: [0]  [ 160/1015]  eta: 2:39:52  lr: 0.000001  loss: 3.2088 (3.2288)  time: 11.1952  data: 0.1814
+Epoch: [0]  [ 170/1015]  eta: 2:38:00  lr: 0.000001  loss: 3.2089 (3.2269)  time: 11.2121  data: 0.1876
+Epoch: [0]  [ 180/1015]  eta: 2:36:02  lr: 0.000001  loss: 3.2182 (3.2276)  time: 11.1585  data: 0.1872
+Epoch: [0]  [ 190/1015]  eta: 2:34:04  lr: 0.000001  loss: 3.2360 (3.2272)  time: 11.0877  data: 0.1830
+Epoch: [0]  [ 200/1015]  eta: 2:31:59  lr: 0.000001  loss: 3.2218 (3.2271)  time: 10.9737  data: 0.1884
+Epoch: [0]  [ 210/1015]  eta: 2:29:59  lr: 0.000001  loss: 3.2170 (3.2260)  time: 10.9267  data: 0.1922
+Epoch: [0]  [ 220/1015]  eta: 2:27:51  lr: 0.000001  loss: 3.2029 (3.2252)  time: 10.8539  data: 0.1878
+Epoch: [0]  [ 230/1015]  eta: 2:25:43  lr: 0.000001  loss: 3.1997 (3.2241)  time: 10.7056  data: 0.1816
+Epoch: [0]  [ 240/1015]  eta: 2:23:36  lr: 0.000001  loss: 3.2042 (3.2237)  time: 10.6693  data: 0.1809
+Epoch: [0]  [ 250/1015]  eta: 2:21:26  lr: 0.000001  loss: 3.2089 (3.2230)  time: 10.5764  data: 0.1887
+Epoch: [0]  [ 260/1015]  eta: 2:19:22  lr: 0.000001  loss: 3.1955 (3.2217)  time: 10.5684  data: 0.1950
+Epoch: [0]  [ 270/1015]  eta: 2:17:27  lr: 0.000001  loss: 3.1928 (3.2205)  time: 10.7812  data: 0.1891
+Epoch: [0]  [ 280/1015]  eta: 2:15:27  lr: 0.000001  loss: 3.1978 (3.2202)  time: 10.8287  data: 0.1854
+Epoch: [0]  [ 290/1015]  eta: 2:13:26  lr: 0.000001  loss: 3.1983 (3.2190)  time: 10.6801  data: 0.1853
+Epoch: [0]  [ 300/1015]  eta: 2:11:25  lr: 0.000001  loss: 3.1984 (3.2186)  time: 10.6070  data: 0.1833
+Epoch: [0]  [ 310/1015]  eta: 2:09:34  lr: 0.000001  loss: 3.1917 (3.2175)  time: 10.7960  data: 0.1885
+Epoch: [0]  [ 320/1015]  eta: 2:07:38  lr: 0.000001  loss: 3.2022 (3.2174)  time: 10.8822  data: 0.1880
+Epoch: [0]  [ 330/1015]  eta: 2:05:42  lr: 0.000001  loss: 3.1942 (3.2165)  time: 10.7419  data: 0.1883
+Epoch: [0]  [ 340/1015]  eta: 2:03:45  lr: 0.000001  loss: 3.1826 (3.2152)  time: 10.6975  data: 0.1864
+Epoch: [0]  [ 350/1015]  eta: 2:01:52  lr: 0.000001  loss: 3.1837 (3.2148)  time: 10.7589  data: 0.1819
+Epoch: [0]  [ 360/1015]  eta: 1:59:55  lr: 0.000001  loss: 3.1837 (3.2139)  time: 10.7416  data: 0.1787
+Epoch: [0]  [ 370/1015]  eta: 1:58:05  lr: 0.000001  loss: 3.1902 (3.2137)  time: 10.8031  data: 0.1802
+Epoch: [0]  [ 380/1015]  eta: 1:56:12  lr: 0.000001  loss: 3.2131 (3.2130)  time: 10.8900  data: 0.1948
+Epoch: [0]  [ 390/1015]  eta: 1:54:14  lr: 0.000001  loss: 3.1964 (3.2126)  time: 10.6344  data: 0.1991
+Epoch: [0]  [ 400/1015]  eta: 1:52:21  lr: 0.000001  loss: 3.1964 (3.2120)  time: 10.6054  data: 0.1988
+Epoch: [0]  [ 410/1015]  eta: 1:50:31  lr: 0.000001  loss: 3.1964 (3.2119)  time: 10.8201  data: 0.2073
+Epoch: [0]  [ 420/1015]  eta: 1:48:37  lr: 0.000001  loss: 3.1820 (3.2109)  time: 10.7928  data: 0.2091
+Epoch: [0]  [ 430/1015]  eta: 1:46:52  lr: 0.000001  loss: 3.1739 (3.2102)  time: 10.9748  data: 0.2027
+Epoch: [0]  [ 440/1015]  eta: 1:45:02  lr: 0.000001  loss: 3.1800 (3.2096)  time: 11.1148  data: 0.1964
+Epoch: [0]  [ 450/1015]  eta: 1:43:12  lr: 0.000001  loss: 3.1687 (3.2087)  time: 10.9281  data: 0.1945
+Epoch: [0]  [ 460/1015]  eta: 1:41:20  lr: 0.000001  loss: 3.1763 (3.2082)  time: 10.8402  data: 0.1963
+Epoch: [0]  [ 470/1015]  eta: 1:39:29  lr: 0.000001  loss: 3.1893 (3.2074)  time: 10.8032  data: 0.2027
+Epoch: [0]  [ 480/1015]  eta: 1:37:37  lr: 0.000001  loss: 3.1885 (3.2068)  time: 10.7799  data: 0.2011
+Epoch: [0]  [ 490/1015]  eta: 1:35:45  lr: 0.000001  loss: 3.1752 (3.2062)  time: 10.7295  data: 0.2016
+Epoch: [0]  [ 500/1015]  eta: 1:33:53  lr: 0.000001  loss: 3.1752 (3.2055)  time: 10.6777  data: 0.2075
+Epoch: [0]  [ 510/1015]  eta: 1:31:59  lr: 0.000001  loss: 3.1861 (3.2051)  time: 10.5775  data: 0.2054
+Epoch: [0]  [ 520/1015]  eta: 1:30:07  lr: 0.000001  loss: 3.1696 (3.2044)  time: 10.5745  data: 0.2042
+Epoch: [0]  [ 530/1015]  eta: 1:28:14  lr: 0.000001  loss: 3.1662 (3.2039)  time: 10.5804  data: 0.2031
+Epoch: [0]  [ 540/1015]  eta: 1:26:23  lr: 0.000001  loss: 3.1745 (3.2031)  time: 10.5969  data: 0.2006
+Epoch: [0]  [ 550/1015]  eta: 1:24:32  lr: 0.000001  loss: 3.1721 (3.2024)  time: 10.6803  data: 0.1983
+Epoch: [0]  [ 560/1015]  eta: 1:22:40  lr: 0.000001  loss: 3.1619 (3.2019)  time: 10.6195  data: 0.1973
+Epoch: [0]  [ 570/1015]  eta: 1:20:48  lr: 0.000001  loss: 3.1579 (3.2013)  time: 10.5773  data: 0.2016
+Epoch: [0]  [ 580/1015]  eta: 1:18:57  lr: 0.000001  loss: 3.1716 (3.2009)  time: 10.5757  data: 0.2083
+Epoch: [0]  [ 590/1015]  eta: 1:17:06  lr: 0.000001  loss: 3.1683 (3.2004)  time: 10.6142  data: 0.2109
+Epoch: [0]  [ 600/1015]  eta: 1:15:15  lr: 0.000001  loss: 3.1797 (3.2001)  time: 10.6299  data: 0.2151
+Epoch: [0]  [ 610/1015]  eta: 1:13:24  lr: 0.000001  loss: 3.1797 (3.1996)  time: 10.5064  data: 0.2156
+Epoch: [0]  [ 620/1015]  eta: 1:11:34  lr: 0.000001  loss: 3.1772 (3.1993)  time: 10.5624  data: 0.2167
+Epoch: [0]  [ 630/1015]  eta: 1:09:44  lr: 0.000001  loss: 3.1826 (3.1988)  time: 10.7201  data: 0.2054
+Epoch: [0]  [ 640/1015]  eta: 1:07:55  lr: 0.000001  loss: 3.1832 (3.1987)  time: 10.7591  data: 0.1953
+Epoch: [0]  [ 650/1015]  eta: 1:06:06  lr: 0.000001  loss: 3.1832 (3.1982)  time: 10.7685  data: 0.1980
+Epoch: [0]  [ 660/1015]  eta: 1:04:16  lr: 0.000001  loss: 3.1716 (3.1973)  time: 10.6998  data: 0.1989
+Epoch: [0]  [ 670/1015]  eta: 1:02:26  lr: 0.000001  loss: 3.1613 (3.1970)  time: 10.6677  data: 0.1992
+Epoch: [0]  [ 680/1015]  eta: 1:00:37  lr: 0.000001  loss: 3.1528 (3.1962)  time: 10.6539  data: 0.1944
+Epoch: [0]  [ 690/1015]  eta: 0:58:48  lr: 0.000001  loss: 3.1282 (3.1956)  time: 10.7299  data: 0.1928
+Epoch: [0]  [ 700/1015]  eta: 0:57:00  lr: 0.000001  loss: 3.1757 (3.1954)  time: 10.9025  data: 0.1991
+Epoch: [0]  [ 710/1015]  eta: 0:55:12  lr: 0.000001  loss: 3.1757 (3.1948)  time: 10.9739  data: 0.2047
+Epoch: [0]  [ 720/1015]  eta: 0:53:23  lr: 0.000001  loss: 3.1764 (3.1943)  time: 10.9307  data: 0.2015
+Epoch: [0]  [ 730/1015]  eta: 0:51:34  lr: 0.000001  loss: 3.1727 (3.1936)  time: 10.8157  data: 0.1964
+Epoch: [0]  [ 740/1015]  eta: 0:49:45  lr: 0.000001  loss: 3.1547 (3.1933)  time: 10.6696  data: 0.1987
+Epoch: [0]  [ 750/1015]  eta: 0:47:55  lr: 0.000001  loss: 3.1454 (3.1926)  time: 10.6337  data: 0.2096
+Epoch: [0]  [ 760/1015]  eta: 0:46:07  lr: 0.000001  loss: 3.1454 (3.1921)  time: 10.7806  data: 0.2080
+Epoch: [0]  [ 770/1015]  eta: 0:44:18  lr: 0.000001  loss: 3.1461 (3.1916)  time: 10.8219  data: 0.2026
+Epoch: [0]  [ 780/1015]  eta: 0:42:29  lr: 0.000001  loss: 3.1446 (3.1911)  time: 10.6565  data: 0.2072
+Epoch: [0]  [ 790/1015]  eta: 0:40:40  lr: 0.000001  loss: 3.1301 (3.1904)  time: 10.6026  data: 0.2048
+Epoch: [0]  [ 800/1015]  eta: 0:38:51  lr: 0.000001  loss: 3.1331 (3.1899)  time: 10.6212  data: 0.2102
+Epoch: [0]  [ 810/1015]  eta: 0:37:02  lr: 0.000001  loss: 3.1331 (3.1893)  time: 10.6346  data: 0.2063
+Epoch: [0]  [ 820/1015]  eta: 0:35:13  lr: 0.000001  loss: 3.1327 (3.1887)  time: 10.6321  data: 0.2004
+Epoch: [0]  [ 830/1015]  eta: 0:33:23  lr: 0.000001  loss: 3.1507 (3.1883)  time: 10.4711  data: 0.2110
+Epoch: [0]  [ 840/1015]  eta: 0:31:34  lr: 0.000001  loss: 3.1507 (3.1876)  time: 10.4736  data: 0.2063
+Epoch: [0]  [ 850/1015]  eta: 0:29:46  lr: 0.000001  loss: 3.1363 (3.1871)  time: 10.5437  data: 0.1996
+Epoch: [0]  [ 860/1015]  eta: 0:27:57  lr: 0.000001  loss: 3.1404 (3.1867)  time: 10.5698  data: 0.2092
+Epoch: [0]  [ 870/1015]  eta: 0:26:08  lr: 0.000001  loss: 3.1416 (3.1862)  time: 10.5948  data: 0.2085
+Epoch: [0]  [ 880/1015]  eta: 0:24:20  lr: 0.000001  loss: 3.1463 (3.1860)  time: 10.6043  data: 0.1993
+Epoch: [0]  [ 890/1015]  eta: 0:22:31  lr: 0.000001  loss: 3.1537 (3.1855)  time: 10.5783  data: 0.1955
+Epoch: [0]  [ 900/1015]  eta: 0:20:43  lr: 0.000001  loss: 3.1549 (3.1851)  time: 10.4622  data: 0.2093
+Epoch: [0]  [ 910/1015]  eta: 0:18:54  lr: 0.000001  loss: 3.1500 (3.1847)  time: 10.4671  data: 0.2108
+Epoch: [0]  [ 920/1015]  eta: 0:17:06  lr: 0.000001  loss: 3.1354 (3.1842)  time: 10.5146  data: 0.2058
+Epoch: [0]  [ 930/1015]  eta: 0:15:18  lr: 0.000001  loss: 3.1425 (3.1839)  time: 10.5207  data: 0.2104
+Epoch: [0]  [ 940/1015]  eta: 0:13:29  lr: 0.000001  loss: 3.1449 (3.1836)  time: 10.5359  data: 0.2006
+Epoch: [0]  [ 950/1015]  eta: 0:11:41  lr: 0.000001  loss: 3.1347 (3.1833)  time: 10.5734  data: 0.2054
+Epoch: [0]  [ 960/1015]  eta: 0:09:53  lr: 0.000001  loss: 3.1393 (3.1829)  time: 10.6078  data: 0.2041
+Epoch: [0]  [ 970/1015]  eta: 0:08:05  lr: 0.000001  loss: 3.1427 (3.1825)  time: 10.6253  data: 0.1977
+Epoch: [0]  [ 980/1015]  eta: 0:06:17  lr: 0.000001  loss: 3.1383 (3.1820)  time: 10.6440  data: 0.2002
+Epoch: [0]  [ 990/1015]  eta: 0:04:29  lr: 0.000001  loss: 3.1383 (3.1817)  time: 10.5556  data: 0.2073
+Epoch: [0]  [1000/1015]  eta: 0:02:41  lr: 0.000001  loss: 3.1259 (3.1812)  time: 10.5270  data: 0.2111
+Epoch: [0]  [1010/1015]  eta: 0:00:53  lr: 0.000001  loss: 3.1204 (3.1808)  time: 10.5478  data: 0.2099
+Epoch: [0]  [1014/1015]  eta: 0:00:10  lr: 0.000001  loss: 3.1152 (3.1806)  time: 10.5321  data: 0.2110
+Epoch: [0] Total time: 3:02:23 (10.7813 s / it)
+Averaged stats: lr: 0.000001  loss: 3.1152 (3.1806)
+/home/applivity/ahmedk/msai/2ndsem/dl/TransNeXt/classification/engine.py:87: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(enabled=(device.type == 'cuda')):
+Test:  [ 0/27]  eta: 0:02:12  loss: 3.2532 (3.2532)  acc1: 0.0000 (0.0000)  acc5: 4.1667 (4.1667)  time: 4.8922  data: 0.3033
+Test:  [10/27]  eta: 0:01:25  loss: 3.0922 (2.9702)  acc1: 4.1667 (13.0682)  acc5: 45.8333 (42.4242)  time: 5.0182  data: 0.3464
+Test:  [20/27]  eta: 0:00:34  loss: 3.1452 (3.0636)  acc1: 2.0833 (8.4325)  acc5: 29.1667 (34.6230)  time: 5.0009  data: 0.3354
+Test:  [26/27]  eta: 0:00:04  loss: 3.1400 (3.0626)  acc1: 2.0833 (13.3600)  acc5: 31.2500 (39.6800)  time: 4.7294  data: 0.3109
+Test: Total time: 0:02:09 (4.8102 s / it)
+* Acc@1 13.360 Acc@5 39.680 loss 3.063
+Accuracy of the network on the 1250 test images: 13.4%
+Saving best performance checkpoint
+Max accuracy: 13.36%
+Epoch: [1]  [   0/1015]  eta: 2:38:39  lr: 0.000001  loss: 3.0945 (3.0945)  time: 9.3789  data: 0.1559
+Epoch: [1]  [  10/1015]  eta: 2:58:53  lr: 0.000001  loss: 3.1340 (3.1271)  time: 10.6802  data: 0.1796
+Epoch: [1]  [  20/1015]  eta: 2:57:50  lr: 0.000001  loss: 3.1422 (3.1357)  time: 10.7919  data: 0.1782
+Epoch: [1]  [  30/1015]  eta: 2:55:57  lr: 0.000001  loss: 3.1681 (3.1393)  time: 10.7399  data: 0.1781
+Epoch: [1]  [  40/1015]  eta: 2:53:59  lr: 0.000001  loss: 3.1482 (3.1417)  time: 10.6888  data: 0.1871
+Epoch: [1]  [  50/1015]  eta: 2:52:13  lr: 0.000001  loss: 3.1428 (3.1424)  time: 10.6916  data: 0.1822
+Epoch: [1]  [  60/1015]  eta: 2:50:31  lr: 0.000001  loss: 3.1428 (3.1431)  time: 10.7278  data: 0.1836
+Epoch: [1]  [  70/1015]  eta: 2:49:00  lr: 0.000001  loss: 3.1448 (3.1428)  time: 10.7865  data: 0.1830
+Epoch: [1]  [  80/1015]  eta: 2:47:35  lr: 0.000001  loss: 3.1653 (3.1470)  time: 10.8783  data: 0.1774
+Epoch: [1]  [  90/1015]  eta: 2:46:08  lr: 0.000001  loss: 3.1792 (3.1493)  time: 10.9428  data: 0.1836
+Epoch: [1]  [ 100/1015]  eta: 2:44:52  lr: 0.000001  loss: 3.1645 (3.1476)  time: 11.0432  data: 0.1768
+Epoch: [1]  [ 110/1015]  eta: 2:43:31  lr: 0.000001  loss: 3.1333 (3.1479)  time: 11.1338  data: 0.1749
+Epoch: [1]  [ 120/1015]  eta: 2:42:03  lr: 0.000001  loss: 3.1364 (3.1466)  time: 11.1297  data: 0.1876
+Epoch: [1]  [ 130/1015]  eta: 2:40:31  lr: 0.000001  loss: 3.1222 (3.1449)  time: 11.1185  data: 0.1945
+Epoch: [1]  [ 140/1015]  eta: 2:39:10  lr: 0.000001  loss: 3.1222 (3.1443)  time: 11.2224  data: 0.1853
+Epoch: [1]  [ 150/1015]  eta: 2:37:42  lr: 0.000001  loss: 3.1365 (3.1444)  time: 11.3084  data: 0.1810
+Epoch: [1]  [ 160/1015]  eta: 2:36:02  lr: 0.000001  loss: 3.1443 (3.1427)  time: 11.1995  data: 0.1858
+Epoch: [1]  [ 170/1015]  eta: 2:34:25  lr: 0.000001  loss: 3.1245 (3.1415)  time: 11.1559  data: 0.1867
+Epoch: [1]  [ 180/1015]  eta: 2:32:45  lr: 0.000001  loss: 3.1264 (3.1399)  time: 11.1832  data: 0.1809
+Epoch: [1]  [ 190/1015]  eta: 2:31:11  lr: 0.000001  loss: 3.1316 (3.1402)  time: 11.2530  data: 0.1817
+Epoch: [1]  [ 200/1015]  eta: 2:29:24  lr: 0.000001  loss: 3.1443 (3.1404)  time: 11.2098  data: 0.1823
+Epoch: [1]  [ 210/1015]  eta: 2:27:37  lr: 0.000001  loss: 3.1394 (3.1398)  time: 11.0750  data: 0.1779
+Epoch: [1]  [ 220/1015]  eta: 2:25:53  lr: 0.000001  loss: 3.1377 (3.1387)  time: 11.1310  data: 0.1799
+Epoch: [1]  [ 230/1015]  eta: 2:23:46  lr: 0.000001  loss: 3.1148 (3.1385)  time: 10.8483  data: 0.1834
+Epoch: [1]  [ 240/1015]  eta: 2:21:50  lr: 0.000001  loss: 3.1148 (3.1376)  time: 10.6434  data: 0.1841
+Epoch: [1]  [ 250/1015]  eta: 2:19:57  lr: 0.000001  loss: 3.1400 (3.1378)  time: 10.8346  data: 0.1788
+Epoch: [1]  [ 260/1015]  eta: 2:18:09  lr: 0.000001  loss: 3.1400 (3.1368)  time: 10.9721  data: 0.1774
+Epoch: [1]  [ 270/1015]  eta: 2:16:21  lr: 0.000001  loss: 3.1124 (3.1366)  time: 11.0406  data: 0.1811
+Epoch: [1]  [ 280/1015]  eta: 2:14:26  lr: 0.000001  loss: 3.1313 (3.1358)  time: 10.8970  data: 0.1793
+Epoch: [1]  [ 290/1015]  eta: 2:12:28  lr: 0.000001  loss: 3.1270 (3.1363)  time: 10.7245  data: 0.1782
+Epoch: [1]  [ 300/1015]  eta: 2:10:34  lr: 0.000001  loss: 3.1537 (3.1371)  time: 10.7262  data: 0.1792
+Epoch: [1]  [ 310/1015]  eta: 2:08:44  lr: 0.000001  loss: 3.1454 (3.1365)  time: 10.8408  data: 0.1792
+Epoch: [1]  [ 320/1015]  eta: 2:06:55  lr: 0.000001  loss: 3.1288 (3.1363)  time: 10.9480  data: 0.1850
+Epoch: [1]  [ 330/1015]  eta: 2:05:03  lr: 0.000001  loss: 3.1379 (3.1364)  time: 10.9105  data: 0.1824
+Epoch: [1]  [ 340/1015]  eta: 2:03:10  lr: 0.000001  loss: 3.1379 (3.1361)  time: 10.8147  data: 0.1789
+Epoch: [1]  [ 350/1015]  eta: 2:01:19  lr: 0.000001  loss: 3.1248 (3.1354)  time: 10.8218  data: 0.1792
+Epoch: [1]  [ 360/1015]  eta: 1:59:31  lr: 0.000001  loss: 3.1005 (3.1348)  time: 10.9420  data: 0.1800
+Epoch: [1]  [ 370/1015]  eta: 1:57:45  lr: 0.000001  loss: 3.1005 (3.1341)  time: 11.0876  data: 0.1812
+Epoch: [1]  [ 380/1015]  eta: 1:55:53  lr: 0.000001  loss: 3.1056 (3.1332)  time: 10.9868  data: 0.1847
+Epoch: [1]  [ 390/1015]  eta: 1:54:04  lr: 0.000001  loss: 3.1272 (3.1328)  time: 10.9045  data: 0.1884
+Epoch: [1]  [ 400/1015]  eta: 1:52:12  lr: 0.000001  loss: 3.1370 (3.1333)  time: 10.8768  data: 0.1910
+Epoch: [1]  [ 410/1015]  eta: 1:50:22  lr: 0.000001  loss: 3.1367 (3.1327)  time: 10.8602  data: 0.1902
+Epoch: [1]  [ 420/1015]  eta: 1:48:33  lr: 0.000001  loss: 3.1362 (3.1325)  time: 10.9679  data: 0.1789
+Epoch: [1]  [ 430/1015]  eta: 1:46:43  lr: 0.000001  loss: 3.1362 (3.1330)  time: 10.9548  data: 0.1770
+Epoch: [1]  [ 440/1015]  eta: 1:44:56  lr: 0.000001  loss: 3.1260 (3.1325)  time: 10.9991  data: 0.1800
+Epoch: [1]  [ 450/1015]  eta: 1:43:07  lr: 0.000001  loss: 3.1169 (3.1322)  time: 11.0463  data: 0.1743
+Epoch: [1]  [ 460/1015]  eta: 1:41:18  lr: 0.000001  loss: 3.1275 (3.1319)  time: 10.9928  data: 0.1764
+Epoch: [1]  [ 470/1015]  eta: 1:39:26  lr: 0.000001  loss: 3.1275 (3.1319)  time: 10.8780  data: 0.1898
+Epoch: [1]  [ 480/1015]  eta: 1:37:37  lr: 0.000001  loss: 3.1488 (3.1323)  time: 10.8646  data: 0.1988
+Epoch: [1]  [ 490/1015]  eta: 1:35:49  lr: 0.000001  loss: 3.1340 (3.1318)  time: 11.0205  data: 0.1963
+Epoch: [1]  [ 500/1015]  eta: 1:34:01  lr: 0.000001  loss: 3.1098 (3.1314)  time: 11.0833  data: 0.1915
+Epoch: [1]  [ 510/1015]  eta: 1:32:11  lr: 0.000001  loss: 3.1209 (3.1318)  time: 10.9974  data: 0.2013
+Epoch: [1]  [ 520/1015]  eta: 1:30:19  lr: 0.000001  loss: 3.1311 (3.1318)  time: 10.8147  data: 0.1974
+Epoch: [1]  [ 530/1015]  eta: 1:28:30  lr: 0.000001  loss: 3.0999 (3.1309)  time: 10.8682  data: 0.1824
+Epoch: [1]  [ 540/1015]  eta: 1:26:42  lr: 0.000001  loss: 3.0919 (3.1300)  time: 11.0431  data: 0.1817
+Epoch: [1]  [ 550/1015]  eta: 1:24:54  lr: 0.000001  loss: 3.1291 (3.1299)  time: 11.0970  data: 0.1803
+Epoch: [1]  [ 560/1015]  eta: 1:23:04  lr: 0.000001  loss: 3.1325 (3.1296)  time: 11.0680  data: 0.1813
+Epoch: [1]  [ 570/1015]  eta: 1:21:14  lr: 0.000001  loss: 3.1290 (3.1297)  time: 10.9266  data: 0.1839
+Epoch: [1]  [ 580/1015]  eta: 1:19:24  lr: 0.000001  loss: 3.1035 (3.1294)  time: 10.8661  data: 0.1914
+Epoch: [1]  [ 590/1015]  eta: 1:17:34  lr: 0.000001  loss: 3.0961 (3.1295)  time: 10.8743  data: 0.1891
+Epoch: [1]  [ 600/1015]  eta: 1:15:43  lr: 0.000001  loss: 3.1309 (3.1293)  time: 10.8357  data: 0.1804
+Epoch: [1]  [ 610/1015]  eta: 1:13:52  lr: 0.000001  loss: 3.1245 (3.1294)  time: 10.7483  data: 0.1767
+Epoch: [1]  [ 620/1015]  eta: 1:12:02  lr: 0.000001  loss: 3.1335 (3.1296)  time: 10.7353  data: 0.1812
+Epoch: [1]  [ 630/1015]  eta: 1:10:11  lr: 0.000001  loss: 3.1265 (3.1296)  time: 10.7691  data: 0.1860
+Epoch: [1]  [ 640/1015]  eta: 1:08:21  lr: 0.000001  loss: 3.1113 (3.1293)  time: 10.7512  data: 0.1819
+Epoch: [1]  [ 650/1015]  eta: 1:06:31  lr: 0.000001  loss: 3.1068 (3.1288)  time: 10.7998  data: 0.1788
+Epoch: [1]  [ 660/1015]  eta: 1:04:41  lr: 0.000001  loss: 3.0863 (3.1281)  time: 10.8380  data: 0.1799
+Epoch: [1]  [ 670/1015]  eta: 1:02:51  lr: 0.000001  loss: 3.0878 (3.1279)  time: 10.8016  data: 0.1836
+Epoch: [1]  [ 680/1015]  eta: 1:00:59  lr: 0.000001  loss: 3.0979 (3.1277)  time: 10.6045  data: 0.1797
+Epoch: [1]  [ 690/1015]  eta: 0:59:08  lr: 0.000001  loss: 3.1167 (3.1278)  time: 10.5329  data: 0.1834
+Epoch: [1]  [ 700/1015]  eta: 0:57:18  lr: 0.000001  loss: 3.1252 (3.1277)  time: 10.7023  data: 0.1846
+Epoch: [1]  [ 710/1015]  eta: 0:55:28  lr: 0.000001  loss: 3.1274 (3.1281)  time: 10.7411  data: 0.1864
+Epoch: [1]  [ 720/1015]  eta: 0:53:38  lr: 0.000001  loss: 3.1164 (3.1273)  time: 10.6508  data: 0.1917
+Epoch: [1]  [ 730/1015]  eta: 0:51:48  lr: 0.000001  loss: 3.0776 (3.1267)  time: 10.6573  data: 0.1879
+Epoch: [1]  [ 740/1015]  eta: 0:49:59  lr: 0.000001  loss: 3.1052 (3.1268)  time: 10.7940  data: 0.1908
+Epoch: [1]  [ 750/1015]  eta: 0:48:09  lr: 0.000001  loss: 3.1220 (3.1269)  time: 10.8349  data: 0.1920
+Epoch: [1]  [ 760/1015]  eta: 0:46:21  lr: 0.000001  loss: 3.1017 (3.1265)  time: 10.8976  data: 0.1861
+Epoch: [1]  [ 770/1015]  eta: 0:44:31  lr: 0.000001  loss: 3.1226 (3.1265)  time: 10.8446  data: 0.1810
+Epoch: [1]  [ 780/1015]  eta: 0:42:42  lr: 0.000001  loss: 3.1243 (3.1265)  time: 10.7943  data: 0.1865
+Epoch: [1]  [ 790/1015]  eta: 0:40:52  lr: 0.000001  loss: 3.1196 (3.1262)  time: 10.7249  data: 0.1913
+Epoch: [1]  [ 800/1015]  eta: 0:39:03  lr: 0.000001  loss: 3.1151 (3.1260)  time: 10.7111  data: 0.1883
+Epoch: [1]  [ 810/1015]  eta: 0:37:13  lr: 0.000001  loss: 3.1237 (3.1264)  time: 10.8222  data: 0.1783
+Epoch: [1]  [ 820/1015]  eta: 0:35:25  lr: 0.000001  loss: 3.1192 (3.1262)  time: 10.8552  data: 0.1726
+Epoch: [1]  [ 830/1015]  eta: 0:33:35  lr: 0.000001  loss: 3.1140 (3.1259)  time: 10.8476  data: 0.1824
+Epoch: [1]  [ 840/1015]  eta: 0:31:46  lr: 0.000001  loss: 3.0902 (3.1254)  time: 10.8083  data: 0.1797
+Epoch: [1]  [ 850/1015]  eta: 0:29:57  lr: 0.000001  loss: 3.0938 (3.1254)  time: 10.9242  data: 0.1791
+Epoch: [1]  [ 860/1015]  eta: 0:28:09  lr: 0.000001  loss: 3.0938 (3.1249)  time: 10.9758  data: 0.1798
+Epoch: [1]  [ 870/1015]  eta: 0:26:20  lr: 0.000001  loss: 3.0935 (3.1247)  time: 10.8924  data: 0.1744
+Epoch: [1]  [ 880/1015]  eta: 0:24:31  lr: 0.000001  loss: 3.0880 (3.1242)  time: 10.8606  data: 0.1794
+Epoch: [1]  [ 890/1015]  eta: 0:22:41  lr: 0.000001  loss: 3.0870 (3.1240)  time: 10.7739  data: 0.1845
+Epoch: [1]  [ 900/1015]  eta: 0:20:52  lr: 0.000001  loss: 3.1255 (3.1243)  time: 10.7306  data: 0.1820
+Epoch: [1]  [ 910/1015]  eta: 0:19:03  lr: 0.000001  loss: 3.1297 (3.1242)  time: 10.8927  data: 0.1846
+Epoch: [1]  [ 920/1015]  eta: 0:17:15  lr: 0.000001  loss: 3.1104 (3.1241)  time: 11.0086  data: 0.1838
+Epoch: [1]  [ 930/1015]  eta: 0:15:26  lr: 0.000001  loss: 3.1207 (3.1244)  time: 10.9287  data: 0.1847
+Epoch: [1]  [ 940/1015]  eta: 0:13:37  lr: 0.000001  loss: 3.1175 (3.1241)  time: 10.8646  data: 0.1919
+Epoch: [1]  [ 950/1015]  eta: 0:11:48  lr: 0.000001  loss: 3.1023 (3.1239)  time: 10.8902  data: 0.1863
+Epoch: [1]  [ 960/1015]  eta: 0:09:59  lr: 0.000001  loss: 3.1140 (3.1238)  time: 10.8654  data: 0.1827
+Epoch: [1]  [ 970/1015]  eta: 0:08:10  lr: 0.000001  loss: 3.1184 (3.1237)  time: 10.8668  data: 0.1913
+Epoch: [1]  [ 980/1015]  eta: 0:06:21  lr: 0.000001  loss: 3.1044 (3.1235)  time: 10.9158  data: 0.1905
+Epoch: [1]  [ 990/1015]  eta: 0:04:32  lr: 0.000001  loss: 3.1263 (3.1236)  time: 10.9695  data: 0.1871
+Epoch: [1]  [1000/1015]  eta: 0:02:43  lr: 0.000001  loss: 3.1263 (3.1236)  time: 10.9929  data: 0.1874
+Epoch: [1]  [1010/1015]  eta: 0:00:54  lr: 0.000001  loss: 3.1015 (3.1233)  time: 10.8839  data: 0.1824
+Epoch: [1]  [1014/1015]  eta: 0:00:10  lr: 0.000001  loss: 3.0867 (3.1234)  time: 10.9425  data: 0.1851
+Epoch: [1] Total time: 3:04:19 (10.8962 s / it)
+Averaged stats: lr: 0.000001  loss: 3.0867 (3.1234)
+Test:  [ 0/27]  eta: 0:02:13  loss: 3.2126 (3.2126)  acc1: 0.0000 (0.0000)  acc5: 4.1667 (4.1667)  time: 4.9478  data: 0.2857
+Test:  [10/27]  eta: 0:01:24  loss: 2.9985 (2.8618)  acc1: 8.3333 (18.5606)  acc5: 58.3333 (49.4318)  time: 4.9609  data: 0.3092
+Test:  [20/27]  eta: 0:00:34  loss: 3.1050 (2.9867)  acc1: 4.1667 (11.2103)  acc5: 29.1667 (40.6746)  time: 4.9257  data: 0.2951
+Test:  [26/27]  eta: 0:00:04  loss: 3.1145 (2.9970)  acc1: 4.1667 (15.1200)  acc5: 35.4167 (44.7200)  time: 4.6808  data: 0.2737
+Test: Total time: 0:02:08 (4.7470 s / it)
+* Acc@1 15.120 Acc@5 44.720 loss 2.997
+Accuracy of the network on the 1250 test images: 15.1%
+Saving best performance checkpoint
+Max accuracy: 15.12%
+Epoch: [2]  [   0/1015]  eta: 2:58:24  lr: 0.000201  loss: 3.0421 (3.0421)  time: 10.5464  data: 0.1727
+Epoch: [2]  [  10/1015]  eta: 3:04:27  lr: 0.000201  loss: 3.1567 (3.1612)  time: 11.0120  data: 0.1777
+Epoch: [2]  [  20/1015]  eta: 3:03:13  lr: 0.000201  loss: 3.1567 (3.1700)  time: 11.0738  data: 0.1771
+Epoch: [2]  [  30/1015]  eta: 3:01:48  lr: 0.000201  loss: 3.2196 (3.1817)  time: 11.1084  data: 0.1749
+Epoch: [2]  [  40/1015]  eta: 2:59:13  lr: 0.000201  loss: 3.2354 (3.1906)  time: 11.0082  data: 0.1734
+Epoch: [2]  [  50/1015]  eta: 2:56:51  lr: 0.000201  loss: 3.1859 (3.1814)  time: 10.8749  data: 0.1761
+Epoch: [2]  [  60/1015]  eta: 2:54:18  lr: 0.000201  loss: 3.0988 (3.1793)  time: 10.7918  data: 0.1825
+Epoch: [2]  [  70/1015]  eta: 2:52:18  lr: 0.000201  loss: 3.1194 (3.1671)  time: 10.7980  data: 0.1782
+Epoch: [2]  [  80/1015]  eta: 2:50:02  lr: 0.000201  loss: 3.1194 (3.1593)  time: 10.7898  data: 0.1777
+Epoch: [2]  [  90/1015]  eta: 2:47:57  lr: 0.000201  loss: 3.1056 (3.1481)  time: 10.7340  data: 0.1780
+Epoch: [2]  [ 100/1015]  eta: 2:46:02  lr: 0.000201  loss: 3.0798 (3.1422)  time: 10.7920  data: 0.1712
+Epoch: [2]  [ 110/1015]  eta: 2:44:21  lr: 0.000201  loss: 3.1120 (3.1442)  time: 10.9030  data: 0.1803
+Epoch: [2]  [ 120/1015]  eta: 2:42:57  lr: 0.000201  loss: 3.1120 (3.1393)  time: 11.1105  data: 0.1873
+Epoch: [2]  [ 130/1015]  eta: 2:41:11  lr: 0.000201  loss: 3.0548 (3.1340)  time: 11.1063  data: 0.1791
+Epoch: [2]  [ 140/1015]  eta: 2:39:30  lr: 0.000201  loss: 3.0438 (3.1260)  time: 11.0153  data: 0.1804
+Epoch: [2]  [ 150/1015]  eta: 2:37:43  lr: 0.000201  loss: 3.0327 (3.1217)  time: 11.0233  data: 0.1805
+Epoch: [2]  [ 160/1015]  eta: 2:35:55  lr: 0.000201  loss: 3.0433 (3.1165)  time: 10.9710  data: 0.1742
+Epoch: [2]  [ 170/1015]  eta: 2:33:50  lr: 0.000201  loss: 3.0186 (3.1089)  time: 10.7906  data: 0.1736
+Epoch: [2]  [ 180/1015]  eta: 2:32:07  lr: 0.000201  loss: 3.0557 (3.1095)  time: 10.8473  data: 0.1715
+Epoch: [2]  [ 190/1015]  eta: 2:30:21  lr: 0.000201  loss: 3.0675 (3.1057)  time: 11.0390  data: 0.1883
+Epoch: [2]  [ 200/1015]  eta: 2:28:39  lr: 0.000201  loss: 2.9832 (3.0965)  time: 11.0582  data: 0.1958
+Epoch: [2]  [ 210/1015]  eta: 2:26:41  lr: 0.000201  loss: 2.9087 (3.0893)  time: 10.9197  data: 0.1855
+Epoch: [2]  [ 220/1015]  eta: 2:24:48  lr: 0.000201  loss: 2.9936 (3.0865)  time: 10.7823  data: 0.1802
+Epoch: [2]  [ 230/1015]  eta: 2:23:03  lr: 0.000201  loss: 2.9940 (3.0810)  time: 10.9371  data: 0.1728
+Epoch: [2]  [ 240/1015]  eta: 2:21:07  lr: 0.000201  loss: 2.9532 (3.0757)  time: 10.8957  data: 0.1759
+Epoch: [2]  [ 250/1015]  eta: 2:19:14  lr: 0.000201  loss: 2.9532 (3.0703)  time: 10.7711  data: 0.1737
+Epoch: [2]  [ 260/1015]  eta: 2:17:25  lr: 0.000201  loss: 2.9656 (3.0674)  time: 10.8661  data: 0.1660
+Epoch: [2]  [ 270/1015]  eta: 2:15:35  lr: 0.000201  loss: 2.9548 (3.0642)  time: 10.9060  data: 0.1738
+Epoch: [2]  [ 280/1015]  eta: 2:13:38  lr: 0.000201  loss: 2.9484 (3.0589)  time: 10.7441  data: 0.1798
+Epoch: [2]  [ 290/1015]  eta: 2:11:52  lr: 0.000201  loss: 2.9063 (3.0534)  time: 10.8307  data: 0.1775
+Epoch: [2]  [ 300/1015]  eta: 2:10:01  lr: 0.000201  loss: 2.8849 (3.0473)  time: 10.9417  data: 0.1741
+Epoch: [2]  [ 310/1015]  eta: 2:08:09  lr: 0.000201  loss: 2.8849 (3.0428)  time: 10.8083  data: 0.1722
+Epoch: [2]  [ 320/1015]  eta: 2:06:24  lr: 0.000201  loss: 2.9431 (3.0400)  time: 10.9323  data: 0.1777
+Epoch: [2]  [ 330/1015]  eta: 2:04:34  lr: 0.000201  loss: 2.9238 (3.0336)  time: 10.9843  data: 0.1809
+Epoch: [2]  [ 340/1015]  eta: 2:02:46  lr: 0.000201  loss: 2.7839 (3.0269)  time: 10.9287  data: 0.1767
+Epoch: [2]  [ 350/1015]  eta: 2:01:00  lr: 0.000201  loss: 2.7894 (3.0210)  time: 11.0223  data: 0.1719
+Epoch: [2]  [ 360/1015]  eta: 1:59:13  lr: 0.000201  loss: 2.7944 (3.0150)  time: 11.0587  data: 0.1760
+Epoch: [2]  [ 370/1015]  eta: 1:57:23  lr: 0.000201  loss: 2.8541 (3.0102)  time: 10.9626  data: 0.1753
+Epoch: [2]  [ 380/1015]  eta: 1:55:33  lr: 0.000201  loss: 2.8400 (3.0051)  time: 10.8624  data: 0.1804
+Epoch: [2]  [ 390/1015]  eta: 1:53:40  lr: 0.000201  loss: 2.8019 (3.0010)  time: 10.7762  data: 0.1890
+Epoch: [2]  [ 400/1015]  eta: 1:51:49  lr: 0.000201  loss: 2.8121 (2.9982)  time: 10.7298  data: 0.1795
+Epoch: [2]  [ 410/1015]  eta: 1:49:59  lr: 0.000201  loss: 2.8121 (2.9930)  time: 10.8042  data: 0.1699
+Epoch: [2]  [ 420/1015]  eta: 1:48:10  lr: 0.000201  loss: 2.8540 (2.9907)  time: 10.8784  data: 0.1705
+Epoch: [2]  [ 430/1015]  eta: 1:46:18  lr: 0.000201  loss: 2.9013 (2.9866)  time: 10.8123  data: 0.1812
+Epoch: [2]  [ 440/1015]  eta: 1:44:27  lr: 0.000201  loss: 2.7707 (2.9820)  time: 10.7472  data: 0.1785
+Epoch: [2]  [ 450/1015]  eta: 1:42:36  lr: 0.000201  loss: 2.7524 (2.9772)  time: 10.7642  data: 0.1707
+Epoch: [2]  [ 460/1015]  eta: 1:40:45  lr: 0.000201  loss: 2.7073 (2.9714)  time: 10.7299  data: 0.1711
+Epoch: [2]  [ 470/1015]  eta: 1:38:55  lr: 0.000201  loss: 2.7046 (2.9654)  time: 10.7465  data: 0.1709
+Epoch: [2]  [ 480/1015]  eta: 1:37:04  lr: 0.000201  loss: 2.6276 (2.9597)  time: 10.7266  data: 0.1737
+Epoch: [2]  [ 490/1015]  eta: 1:35:14  lr: 0.000201  loss: 2.7712 (2.9549)  time: 10.7315  data: 0.1760
+Epoch: [2]  [ 500/1015]  eta: 1:33:26  lr: 0.000201  loss: 2.6332 (2.9494)  time: 10.8889  data: 0.1821
+Epoch: [2]  [ 510/1015]  eta: 1:31:36  lr: 0.000201  loss: 2.7300 (2.9462)  time: 10.9026  data: 0.1832
+Epoch: [2]  [ 520/1015]  eta: 1:29:47  lr: 0.000201  loss: 2.7607 (2.9434)  time: 10.8411  data: 0.1754
+Epoch: [2]  [ 530/1015]  eta: 1:27:56  lr: 0.000201  loss: 2.7239 (2.9390)  time: 10.7596  data: 0.1702
+Epoch: [2]  [ 540/1015]  eta: 1:26:05  lr: 0.000201  loss: 2.6846 (2.9345)  time: 10.6108  data: 0.1718
+Epoch: [2]  [ 550/1015]  eta: 1:24:12  lr: 0.000201  loss: 2.7044 (2.9305)  time: 10.4991  data: 0.1800
+Epoch: [2]  [ 560/1015]  eta: 1:22:22  lr: 0.000201  loss: 2.7044 (2.9267)  time: 10.5453  data: 0.1879
+Epoch: [2]  [ 570/1015]  eta: 1:20:31  lr: 0.000201  loss: 2.6819 (2.9226)  time: 10.6249  data: 0.1809
+Epoch: [2]  [ 580/1015]  eta: 1:18:43  lr: 0.000201  loss: 2.6966 (2.9210)  time: 10.7802  data: 0.1737
+Epoch: [2]  [ 590/1015]  eta: 1:16:55  lr: 0.000201  loss: 2.7525 (2.9169)  time: 10.8821  data: 0.1728
+Epoch: [2]  [ 600/1015]  eta: 1:15:07  lr: 0.000201  loss: 2.7160 (2.9134)  time: 10.9039  data: 0.1705
+Epoch: [2]  [ 610/1015]  eta: 1:13:19  lr: 0.000201  loss: 2.6279 (2.9087)  time: 10.9473  data: 0.1699
+Epoch: [2]  [ 620/1015]  eta: 1:11:30  lr: 0.000201  loss: 2.6020 (2.9041)  time: 10.8813  data: 0.1753
+Epoch: [2]  [ 630/1015]  eta: 1:09:42  lr: 0.000201  loss: 2.6452 (2.9017)  time: 10.8978  data: 0.1877
+Epoch: [2]  [ 640/1015]  eta: 1:07:54  lr: 0.000201  loss: 2.7183 (2.8990)  time: 10.9351  data: 0.1862
+Epoch: [2]  [ 650/1015]  eta: 1:06:06  lr: 0.000201  loss: 2.6538 (2.8957)  time: 11.0349  data: 0.1746
+Epoch: [2]  [ 660/1015]  eta: 1:04:19  lr: 0.000201  loss: 2.6919 (2.8928)  time: 11.1447  data: 0.1712
+Epoch: [2]  [ 670/1015]  eta: 1:02:30  lr: 0.000201  loss: 2.6858 (2.8893)  time: 10.9917  data: 0.1795
+Epoch: [2]  [ 680/1015]  eta: 1:00:45  lr: 0.000201  loss: 2.6668 (2.8863)  time: 11.1801  data: 0.1826
+Epoch: [2]  [ 690/1015]  eta: 0:58:56  lr: 0.000201  loss: 2.7015 (2.8836)  time: 11.2057  data: 0.1739
+Epoch: [2]  [ 700/1015]  eta: 0:57:06  lr: 0.000201  loss: 2.6454 (2.8794)  time: 10.7384  data: 0.1718
+Epoch: [2]  [ 710/1015]  eta: 0:55:17  lr: 0.000201  loss: 2.6117 (2.8757)  time: 10.6971  data: 0.1750
+Epoch: [2]  [ 720/1015]  eta: 0:53:28  lr: 0.000201  loss: 2.6743 (2.8738)  time: 10.7961  data: 0.1763
+Epoch: [2]  [ 730/1015]  eta: 0:51:40  lr: 0.000201  loss: 2.6595 (2.8700)  time: 10.9484  data: 0.1760
+Epoch: [2]  [ 740/1015]  eta: 0:49:51  lr: 0.000201  loss: 2.6595 (2.8678)  time: 10.9895  data: 0.1740
+Epoch: [2]  [ 750/1015]  eta: 0:48:02  lr: 0.000201  loss: 2.7780 (2.8664)  time: 10.7869  data: 0.1694
+Epoch: [2]  [ 760/1015]  eta: 0:46:12  lr: 0.000201  loss: 2.7358 (2.8645)  time: 10.7199  data: 0.1685
+Epoch: [2]  [ 770/1015]  eta: 0:44:24  lr: 0.000201  loss: 2.6881 (2.8604)  time: 10.7945  data: 0.1695
+Epoch: [2]  [ 780/1015]  eta: 0:42:34  lr: 0.000201  loss: 2.6755 (2.8584)  time: 10.7058  data: 0.1729
+Epoch: [2]  [ 790/1015]  eta: 0:40:45  lr: 0.000201  loss: 2.6993 (2.8560)  time: 10.7451  data: 0.1755
+Epoch: [2]  [ 800/1015]  eta: 0:38:56  lr: 0.000201  loss: 2.6498 (2.8542)  time: 10.8269  data: 0.1712
+Epoch: [2]  [ 810/1015]  eta: 0:37:08  lr: 0.000201  loss: 2.6382 (2.8511)  time: 10.8228  data: 0.1699
+Epoch: [2]  [ 820/1015]  eta: 0:35:19  lr: 0.000201  loss: 2.5771 (2.8475)  time: 10.8628  data: 0.1733
+Epoch: [2]  [ 830/1015]  eta: 0:33:30  lr: 0.000201  loss: 2.5771 (2.8453)  time: 10.7773  data: 0.1729
+Epoch: [2]  [ 840/1015]  eta: 0:31:41  lr: 0.000201  loss: 2.6157 (2.8429)  time: 10.6585  data: 0.1679
+Epoch: [2]  [ 850/1015]  eta: 0:29:52  lr: 0.000201  loss: 2.5549 (2.8387)  time: 10.6899  data: 0.1717
+Epoch: [2]  [ 860/1015]  eta: 0:28:03  lr: 0.000201  loss: 2.5351 (2.8355)  time: 10.7407  data: 0.1742
+Epoch: [2]  [ 870/1015]  eta: 0:26:14  lr: 0.000201  loss: 2.5429 (2.8329)  time: 10.7111  data: 0.1796
+Epoch: [2]  [ 880/1015]  eta: 0:24:25  lr: 0.000201  loss: 2.5582 (2.8297)  time: 10.6656  data: 0.1794
+Epoch: [2]  [ 890/1015]  eta: 0:22:36  lr: 0.000201  loss: 2.5329 (2.8271)  time: 10.6839  data: 0.1730
+Epoch: [2]  [ 900/1015]  eta: 0:20:48  lr: 0.000201  loss: 2.5531 (2.8247)  time: 11.0488  data: 0.1755
+Epoch: [2]  [ 910/1015]  eta: 0:19:01  lr: 0.000201  loss: 2.5582 (2.8212)  time: 11.4369  data: 0.1778
+Epoch: [2]  [ 920/1015]  eta: 0:17:12  lr: 0.000201  loss: 2.5582 (2.8185)  time: 11.2581  data: 0.1746
+Epoch: [2]  [ 930/1015]  eta: 0:15:23  lr: 0.000201  loss: 2.5746 (2.8157)  time: 10.8119  data: 0.1707
+Epoch: [2]  [ 940/1015]  eta: 0:13:34  lr: 0.000201  loss: 2.5746 (2.8125)  time: 10.6764  data: 0.1716
+Epoch: [2]  [ 950/1015]  eta: 0:11:46  lr: 0.000201  loss: 2.5670 (2.8104)  time: 10.9069  data: 0.1788
+Epoch: [2]  [ 960/1015]  eta: 0:09:57  lr: 0.000201  loss: 2.4905 (2.8074)  time: 10.9970  data: 0.1800
+Epoch: [2]  [ 970/1015]  eta: 0:08:09  lr: 0.000201  loss: 2.4774 (2.8044)  time: 10.8854  data: 0.1720
+Epoch: [2]  [ 980/1015]  eta: 0:06:20  lr: 0.000201  loss: 2.5495 (2.8018)  time: 10.8768  data: 0.1768
+Epoch: [2]  [ 990/1015]  eta: 0:04:31  lr: 0.000201  loss: 2.5947 (2.7999)  time: 10.9433  data: 0.1813
+Epoch: [2]  [1000/1015]  eta: 0:02:43  lr: 0.000201  loss: 2.5203 (2.7967)  time: 10.9867  data: 0.1767
+Epoch: [2]  [1010/1015]  eta: 0:00:54  lr: 0.000201  loss: 2.5221 (2.7949)  time: 10.9145  data: 0.1711
+Epoch: [2]  [1014/1015]  eta: 0:00:10  lr: 0.000201  loss: 2.5714 (2.7943)  time: 10.9291  data: 0.1723
+Epoch: [2] Total time: 3:03:53 (10.8708 s / it)
+Averaged stats: lr: 0.000201  loss: 2.5714 (2.7943)
+Test:  [ 0/27]  eta: 0:02:11  loss: 1.6450 (1.6450)  acc1: 66.6667 (66.6667)  acc5: 91.6667 (91.6667)  time: 4.8543  data: 0.2588
+Test:  [10/27]  eta: 0:01:24  loss: 2.1681 (2.1601)  acc1: 33.3333 (35.0379)  acc5: 75.0000 (73.4848)  time: 4.9975  data: 0.3246
+Test:  [20/27]  eta: 0:00:34  loss: 2.2575 (2.2904)  acc1: 31.2500 (31.2500)  acc5: 70.8333 (70.4365)  time: 4.9608  data: 0.3089
+Test:  [26/27]  eta: 0:00:04  loss: 2.2575 (2.2418)  acc1: 31.2500 (33.7600)  acc5: 70.8333 (71.5200)  time: 4.6828  data: 0.2831
+Test: Total time: 0:02:08 (4.7733 s / it)
+* Acc@1 33.760 Acc@5 71.520 loss 2.242
+Accuracy of the network on the 1250 test images: 33.8%
+Saving best performance checkpoint
+Max accuracy: 33.76%
+Epoch: [3]  [   0/1015]  eta: 2:52:33  lr: 0.000401  loss: 2.8049 (2.8049)  time: 10.2009  data: 0.1610
+Epoch: [3]  [  10/1015]  eta: 2:59:10  lr: 0.000401  loss: 2.7263 (2.6628)  time: 10.6970  data: 0.1795
+Epoch: [3]  [  20/1015]  eta: 2:57:34  lr: 0.000401  loss: 2.7263 (2.6975)  time: 10.7329  data: 0.1766
+Epoch: [3]  [  30/1015]  eta: 2:56:18  lr: 0.000401  loss: 2.5926 (2.6771)  time: 10.7632  data: 0.1729
+Epoch: [3]  [  40/1015]  eta: 2:56:17  lr: 0.000401  loss: 2.6612 (2.6726)  time: 10.9975  data: 0.1728
+Epoch: [3]  [  50/1015]  eta: 2:54:22  lr: 0.000401  loss: 2.6573 (2.6412)  time: 10.9999  data: 0.1782
+Epoch: [3]  [  60/1015]  eta: 2:53:09  lr: 0.000401  loss: 2.6573 (2.6554)  time: 10.9407  data: 0.1766
+Epoch: [3]  [  70/1015]  eta: 2:51:49  lr: 0.000401  loss: 2.6276 (2.6404)  time: 11.0814  data: 0.1703
+Epoch: [3]  [  80/1015]  eta: 2:50:47  lr: 0.000401  loss: 2.6276 (2.6490)  time: 11.2077  data: 0.1683
+Epoch: [3]  [  90/1015]  eta: 2:49:29  lr: 0.000401  loss: 2.7363 (2.6603)  time: 11.2949  data: 0.1648
+Epoch: [3]  [ 100/1015]  eta: 2:47:53  lr: 0.000401  loss: 2.7541 (2.6672)  time: 11.2077  data: 0.1800
+Epoch: [3]  [ 110/1015]  eta: 2:45:58  lr: 0.000401  loss: 2.6836 (2.6668)  time: 11.0498  data: 0.1900
+Epoch: [3]  [ 120/1015]  eta: 2:44:12  lr: 0.000401  loss: 2.7154 (2.6763)  time: 11.0062  data: 0.1804
+Epoch: [3]  [ 130/1015]  eta: 2:42:19  lr: 0.000401  loss: 2.7150 (2.6804)  time: 11.0114  data: 0.1752
+Epoch: [3]  [ 140/1015]  eta: 2:40:22  lr: 0.000401  loss: 2.6904 (2.6842)  time: 10.9272  data: 0.1715
+Epoch: [3]  [ 150/1015]  eta: 2:38:35  lr: 0.000401  loss: 2.7506 (2.6937)  time: 10.9706  data: 0.1790
+Epoch: [3]  [ 160/1015]  eta: 2:36:38  lr: 0.000401  loss: 2.7513 (2.6948)  time: 10.9591  data: 0.1816
+Epoch: [3]  [ 170/1015]  eta: 2:34:51  lr: 0.000401  loss: 2.6417 (2.6855)  time: 10.9625  data: 0.1710
+Epoch: [3]  [ 180/1015]  eta: 2:33:09  lr: 0.000401  loss: 2.5997 (2.6876)  time: 11.1077  data: 0.1690
+Epoch: [3]  [ 190/1015]  eta: 2:31:29  lr: 0.000401  loss: 2.6654 (2.6847)  time: 11.2064  data: 0.1698
+Epoch: [3]  [ 200/1015]  eta: 2:29:41  lr: 0.000401  loss: 2.6889 (2.6890)  time: 11.1527  data: 0.1717
+Epoch: [3]  [ 210/1015]  eta: 2:27:41  lr: 0.000401  loss: 2.7791 (2.6944)  time: 10.9107  data: 0.1724
+Epoch: [3]  [ 220/1015]  eta: 2:25:42  lr: 0.000401  loss: 2.7625 (2.6972)  time: 10.7702  data: 0.1756
+Epoch: [3]  [ 230/1015]  eta: 2:23:49  lr: 0.000401  loss: 2.7558 (2.6999)  time: 10.8399  data: 0.1828
+Epoch: [3]  [ 240/1015]  eta: 2:22:01  lr: 0.000401  loss: 2.7403 (2.6987)  time: 10.9820  data: 0.1770
+Epoch: [3]  [ 250/1015]  eta: 2:20:08  lr: 0.000401  loss: 2.7142 (2.7017)  time: 10.9723  data: 0.1752
+Epoch: [3]  [ 260/1015]  eta: 2:18:16  lr: 0.000401  loss: 2.7364 (2.7042)  time: 10.9016  data: 0.1772
+Epoch: [3]  [ 270/1015]  eta: 2:16:20  lr: 0.000401  loss: 2.6028 (2.6981)  time: 10.8326  data: 0.1721
+Epoch: [3]  [ 280/1015]  eta: 2:14:26  lr: 0.000401  loss: 2.5411 (2.6972)  time: 10.7914  data: 0.1754
+Epoch: [3]  [ 290/1015]  eta: 2:12:34  lr: 0.000401  loss: 2.5522 (2.6915)  time: 10.8538  data: 0.1760
+Epoch: [3]  [ 300/1015]  eta: 2:10:49  lr: 0.000401  loss: 2.6012 (2.6896)  time: 11.0315  data: 0.1738
+Epoch: [3]  [ 310/1015]  eta: 2:09:01  lr: 0.000401  loss: 2.6362 (2.6895)  time: 11.1237  data: 0.1745
+Epoch: [3]  [ 320/1015]  eta: 2:07:15  lr: 0.000401  loss: 2.5539 (2.6844)  time: 11.0931  data: 0.1734
+Epoch: [3]  [ 330/1015]  eta: 2:05:27  lr: 0.000401  loss: 2.5828 (2.6821)  time: 11.1138  data: 0.1741
+Epoch: [3]  [ 340/1015]  eta: 2:03:36  lr: 0.000401  loss: 2.6320 (2.6844)  time: 11.0095  data: 0.1874
+Epoch: [3]  [ 350/1015]  eta: 2:01:45  lr: 0.000401  loss: 2.6482 (2.6813)  time: 10.9400  data: 0.1844
+Epoch: [3]  [ 360/1015]  eta: 1:59:57  lr: 0.000401  loss: 2.6087 (2.6799)  time: 11.0270  data: 0.1808
+Epoch: [3]  [ 370/1015]  eta: 1:58:09  lr: 0.000401  loss: 2.6532 (2.6782)  time: 11.0702  data: 0.1851
+Epoch: [3]  [ 380/1015]  eta: 1:56:17  lr: 0.000401  loss: 2.5530 (2.6762)  time: 10.9587  data: 0.1777
+Epoch: [3]  [ 390/1015]  eta: 1:54:22  lr: 0.000401  loss: 2.5530 (2.6741)  time: 10.7857  data: 0.1738
+Epoch: [3]  [ 400/1015]  eta: 1:52:28  lr: 0.000401  loss: 2.6651 (2.6747)  time: 10.7079  data: 0.1696
+Epoch: [3]  [ 410/1015]  eta: 1:50:38  lr: 0.000401  loss: 2.7086 (2.6775)  time: 10.8123  data: 0.1702
+Epoch: [3]  [ 420/1015]  eta: 1:48:46  lr: 0.000401  loss: 2.7133 (2.6783)  time: 10.8680  data: 0.1727
+Epoch: [3]  [ 430/1015]  eta: 1:46:55  lr: 0.000401  loss: 2.6987 (2.6784)  time: 10.8551  data: 0.1813
+Epoch: [3]  [ 440/1015]  eta: 1:45:06  lr: 0.000401  loss: 2.5990 (2.6763)  time: 10.9422  data: 0.1819
+Epoch: [3]  [ 450/1015]  eta: 1:43:17  lr: 0.000401  loss: 2.5382 (2.6732)  time: 11.0138  data: 0.1745
+Epoch: [3]  [ 460/1015]  eta: 1:41:25  lr: 0.000401  loss: 2.5844 (2.6703)  time: 10.9190  data: 0.1738
+Epoch: [3]  [ 470/1015]  eta: 1:39:36  lr: 0.000401  loss: 2.5371 (2.6670)  time: 10.9173  data: 0.1721
+Epoch: [3]  [ 480/1015]  eta: 1:37:46  lr: 0.000401  loss: 2.5158 (2.6644)  time: 10.9745  data: 0.1740
+Epoch: [3]  [ 490/1015]  eta: 1:35:59  lr: 0.000401  loss: 2.4963 (2.6607)  time: 11.0751  data: 0.1819
+Epoch: [3]  [ 500/1015]  eta: 1:34:08  lr: 0.000401  loss: 2.4955 (2.6585)  time: 11.0010  data: 0.1797
+Epoch: [3]  [ 510/1015]  eta: 1:32:15  lr: 0.000401  loss: 2.4633 (2.6545)  time: 10.7363  data: 0.1748
+Epoch: [3]  [ 520/1015]  eta: 1:30:24  lr: 0.000401  loss: 2.5417 (2.6537)  time: 10.7389  data: 0.1738
+Epoch: [3]  [ 530/1015]  eta: 1:28:33  lr: 0.000401  loss: 2.5598 (2.6512)  time: 10.7923  data: 0.1704
+Epoch: [3]  [ 540/1015]  eta: 1:26:43  lr: 0.000401  loss: 2.4372 (2.6473)  time: 10.8831  data: 0.1700
+Epoch: [3]  [ 550/1015]  eta: 1:24:52  lr: 0.000401  loss: 2.4372 (2.6447)  time: 10.8337  data: 0.1731
+Epoch: [3]  [ 560/1015]  eta: 1:23:04  lr: 0.000401  loss: 2.5578 (2.6433)  time: 10.9283  data: 0.1779
+Epoch: [3]  [ 570/1015]  eta: 1:21:15  lr: 0.000401  loss: 2.5112 (2.6420)  time: 11.0701  data: 0.1764
+Epoch: [3]  [ 580/1015]  eta: 1:19:25  lr: 0.000401  loss: 2.4823 (2.6394)  time: 10.9799  data: 0.1782
+Epoch: [3]  [ 590/1015]  eta: 1:17:35  lr: 0.000401  loss: 2.5724 (2.6390)  time: 10.9043  data: 0.1779
+Epoch: [3]  [ 600/1015]  eta: 1:15:45  lr: 0.000401  loss: 2.6121 (2.6366)  time: 10.8731  data: 0.1679
+Epoch: [3]  [ 610/1015]  eta: 1:13:56  lr: 0.000401  loss: 2.5351 (2.6351)  time: 10.9995  data: 0.1686
+Epoch: [3]  [ 620/1015]  eta: 1:12:05  lr: 0.000401  loss: 2.5344 (2.6337)  time: 10.9242  data: 0.1755
+Epoch: [3]  [ 630/1015]  eta: 1:10:15  lr: 0.000401  loss: 2.5739 (2.6346)  time: 10.7470  data: 0.1736
+Epoch: [3]  [ 640/1015]  eta: 1:08:26  lr: 0.000401  loss: 2.6162 (2.6340)  time: 10.9524  data: 0.1757
+Epoch: [3]  [ 650/1015]  eta: 1:06:37  lr: 0.000401  loss: 2.6162 (2.6346)  time: 11.0716  data: 0.1818
+Epoch: [3]  [ 660/1015]  eta: 1:04:47  lr: 0.000401  loss: 2.6234 (2.6357)  time: 10.9342  data: 0.1742
+Epoch: [3]  [ 670/1015]  eta: 1:02:57  lr: 0.000401  loss: 2.7206 (2.6369)  time: 10.8237  data: 0.1732
+Epoch: [3]  [ 680/1015]  eta: 1:01:08  lr: 0.000401  loss: 2.5846 (2.6347)  time: 10.9149  data: 0.1712
+Epoch: [3]  [ 690/1015]  eta: 0:59:19  lr: 0.000401  loss: 2.5305 (2.6338)  time: 11.0946  data: 0.1691
+Epoch: [3]  [ 700/1015]  eta: 0:57:29  lr: 0.000401  loss: 2.6027 (2.6322)  time: 10.9349  data: 0.1768
+Epoch: [3]  [ 710/1015]  eta: 0:55:38  lr: 0.000401  loss: 2.6131 (2.6326)  time: 10.7193  data: 0.1820
+Epoch: [3]  [ 720/1015]  eta: 0:53:47  lr: 0.000401  loss: 2.5821 (2.6293)  time: 10.6050  data: 0.1853
+Epoch: [3]  [ 730/1015]  eta: 0:51:57  lr: 0.000401  loss: 2.3708 (2.6265)  time: 10.6850  data: 0.1812
+Epoch: [3]  [ 740/1015]  eta: 0:50:06  lr: 0.000401  loss: 2.4136 (2.6235)  time: 10.6760  data: 0.1757
+Epoch: [3]  [ 750/1015]  eta: 0:48:15  lr: 0.000401  loss: 2.4015 (2.6210)  time: 10.4759  data: 0.1725
+Epoch: [3]  [ 760/1015]  eta: 0:46:25  lr: 0.000401  loss: 2.4074 (2.6196)  time: 10.4959  data: 0.1746
+Epoch: [3]  [ 770/1015]  eta: 0:44:35  lr: 0.000401  loss: 2.6124 (2.6198)  time: 10.6266  data: 0.1736
+Epoch: [3]  [ 780/1015]  eta: 0:42:45  lr: 0.000401  loss: 2.5255 (2.6176)  time: 10.7162  data: 0.1726
+Epoch: [3]  [ 790/1015]  eta: 0:40:56  lr: 0.000401  loss: 2.4109 (2.6148)  time: 10.8664  data: 0.1764
+Epoch: [3]  [ 800/1015]  eta: 0:39:07  lr: 0.000401  loss: 2.4109 (2.6130)  time: 10.9342  data: 0.1747
+Epoch: [3]  [ 810/1015]  eta: 0:37:17  lr: 0.000401  loss: 2.4750 (2.6112)  time: 10.8713  data: 0.1722
+Epoch: [3]  [ 820/1015]  eta: 0:35:27  lr: 0.000401  loss: 2.4949 (2.6101)  time: 10.7412  data: 0.1711
+Epoch: [3]  [ 830/1015]  eta: 0:33:39  lr: 0.000401  loss: 2.4478 (2.6079)  time: 10.8183  data: 0.1759
+Epoch: [3]  [ 840/1015]  eta: 0:31:49  lr: 0.000401  loss: 2.4126 (2.6052)  time: 10.9004  data: 0.1789
+Epoch: [3]  [ 850/1015]  eta: 0:30:00  lr: 0.000401  loss: 2.3566 (2.6034)  time: 10.7888  data: 0.1742
+Epoch: [3]  [ 860/1015]  eta: 0:28:11  lr: 0.000401  loss: 2.5149 (2.6032)  time: 10.9559  data: 0.1713
+Epoch: [3]  [ 870/1015]  eta: 0:26:22  lr: 0.000401  loss: 2.4831 (2.6017)  time: 11.1171  data: 0.1786
+Epoch: [3]  [ 880/1015]  eta: 0:24:34  lr: 0.000401  loss: 2.4091 (2.6002)  time: 11.1887  data: 0.1799
+Epoch: [3]  [ 890/1015]  eta: 0:22:45  lr: 0.000401  loss: 2.4636 (2.5994)  time: 11.2997  data: 0.1762
+Epoch: [3]  [ 900/1015]  eta: 0:20:56  lr: 0.000401  loss: 2.4636 (2.5980)  time: 11.3713  data: 0.1798
+Epoch: [3]  [ 910/1015]  eta: 0:19:07  lr: 0.000401  loss: 2.5143 (2.5975)  time: 11.3137  data: 0.1780
+Epoch: [3]  [ 920/1015]  eta: 0:17:18  lr: 0.000401  loss: 2.5222 (2.5968)  time: 11.2158  data: 0.1827
+Epoch: [3]  [ 930/1015]  eta: 0:15:29  lr: 0.000401  loss: 2.5222 (2.5962)  time: 11.1009  data: 0.1803
+Epoch: [3]  [ 940/1015]  eta: 0:13:40  lr: 0.000401  loss: 2.4721 (2.5951)  time: 11.1833  data: 0.1737
+Epoch: [3]  [ 950/1015]  eta: 0:11:51  lr: 0.000401  loss: 2.4694 (2.5940)  time: 11.2612  data: 0.1765
+Epoch: [3]  [ 960/1015]  eta: 0:10:01  lr: 0.000401  loss: 2.4753 (2.5931)  time: 11.0589  data: 0.1795
+Epoch: [3]  [ 970/1015]  eta: 0:08:12  lr: 0.000401  loss: 2.5192 (2.5918)  time: 11.0238  data: 0.1789
+Epoch: [3]  [ 980/1015]  eta: 0:06:23  lr: 0.000401  loss: 2.3407 (2.5890)  time: 10.9433  data: 0.1737
+Epoch: [3]  [ 990/1015]  eta: 0:04:33  lr: 0.000401  loss: 2.3921 (2.5887)  time: 10.7402  data: 0.1764
+Epoch: [3]  [1000/1015]  eta: 0:02:44  lr: 0.000401  loss: 2.4725 (2.5866)  time: 10.6649  data: 0.1788
+Epoch: [3]  [1010/1015]  eta: 0:00:54  lr: 0.000401  loss: 2.4666 (2.5856)  time: 10.6722  data: 0.1808
+Epoch: [3]  [1014/1015]  eta: 0:00:10  lr: 0.000401  loss: 2.4725 (2.5856)  time: 10.7151  data: 0.1815
+Epoch: [3] Total time: 3:04:59 (10.9352 s / it)
+Averaged stats: lr: 0.000401  loss: 2.4725 (2.5856)
+Test:  [ 0/27]  eta: 0:02:10  loss: 1.1305 (1.1305)  acc1: 75.0000 (75.0000)  acc5: 95.8333 (95.8333)  time: 4.8383  data: 0.2543
+Test:  [10/27]  eta: 0:01:24  loss: 1.7022 (1.8996)  acc1: 54.1667 (45.4545)  acc5: 85.4167 (80.3030)  time: 4.9414  data: 0.3058
+Test:  [20/27]  eta: 0:00:34  loss: 1.8109 (1.9665)  acc1: 45.8333 (41.6667)  acc5: 83.3333 (79.4643)  time: 4.9495  data: 0.2952
+Test:  [26/27]  eta: 0:00:04  loss: 1.8109 (1.8977)  acc1: 45.8333 (43.5200)  acc5: 85.4167 (80.0000)  time: 4.6997  data: 0.2755
+Test: Total time: 0:02:08 (4.7604 s / it)
+* Acc@1 43.520 Acc@5 80.000 loss 1.898
+Accuracy of the network on the 1250 test images: 43.5%
+Saving best performance checkpoint
+Max accuracy: 43.52%
+Epoch: [4]  [   0/1015]  eta: 3:00:39  lr: 0.000600  loss: 2.4372 (2.4372)  time: 10.6794  data: 0.1612
+Epoch: [4]  [  10/1015]  eta: 3:02:44  lr: 0.000600  loss: 2.5482 (2.5418)  time: 10.9101  data: 0.1648
+Epoch: [4]  [  20/1015]  eta: 3:01:48  lr: 0.000600  loss: 2.5485 (2.5852)  time: 10.9777  data: 0.1687
+Epoch: [4]  [  30/1015]  eta: 3:00:29  lr: 0.000600  loss: 2.5031 (2.5432)  time: 11.0412  data: 0.1710
+Epoch: [4]  [  40/1015]  eta: 2:59:25  lr: 0.000600  loss: 2.3871 (2.5043)  time: 11.1229  data: 0.1685
+Epoch: [4]  [  50/1015]  eta: 2:57:34  lr: 0.000600  loss: 2.4299 (2.5153)  time: 11.1134  data: 0.1658
+Epoch: [4]  [  60/1015]  eta: 2:55:36  lr: 0.000600  loss: 2.6029 (2.5208)  time: 11.0153  data: 0.1704
+Epoch: [4]  [  70/1015]  eta: 2:54:10  lr: 0.000600  loss: 2.6056 (2.5389)  time: 11.1040  data: 0.1741
+Epoch: [4]  [  80/1015]  eta: 2:52:48  lr: 0.000600  loss: 2.6063 (2.5447)  time: 11.2606  data: 0.1716
+Epoch: [4]  [  90/1015]  eta: 2:50:57  lr: 0.000600  loss: 2.6063 (2.5544)  time: 11.1974  data: 0.1822
+Epoch: [4]  [ 100/1015]  eta: 2:49:23  lr: 0.000600  loss: 2.5526 (2.5625)  time: 11.1805  data: 0.1861
+Epoch: [4]  [ 110/1015]  eta: 2:47:34  lr: 0.000600  loss: 2.5526 (2.5627)  time: 11.2011  data: 0.1746
+Epoch: [4]  [ 120/1015]  eta: 2:45:37  lr: 0.000600  loss: 2.5849 (2.5652)  time: 11.0813  data: 0.1794
+Epoch: [4]  [ 130/1015]  eta: 2:43:47  lr: 0.000600  loss: 2.5807 (2.5633)  time: 11.0753  data: 0.1840
+Epoch: [4]  [ 140/1015]  eta: 2:42:02  lr: 0.000600  loss: 2.5759 (2.5635)  time: 11.1614  data: 0.1812
+Epoch: [4]  [ 150/1015]  eta: 2:40:32  lr: 0.000600  loss: 2.5477 (2.5619)  time: 11.3432  data: 0.1889
+Epoch: [4]  [ 160/1015]  eta: 2:39:16  lr: 0.000600  loss: 2.5000 (2.5547)  time: 11.6390  data: 0.1960
+Epoch: [4]  [ 170/1015]  eta: 2:37:36  lr: 0.000600  loss: 2.4415 (2.5506)  time: 11.6088  data: 0.1956
+Epoch: [4]  [ 180/1015]  eta: 2:35:34  lr: 0.000600  loss: 2.4819 (2.5507)  time: 11.1938  data: 0.1800
+Epoch: [4]  [ 190/1015]  eta: 2:33:59  lr: 0.000600  loss: 2.5578 (2.5499)  time: 11.2679  data: 0.1702
+Epoch: [4]  [ 200/1015]  eta: 2:32:51  lr: 0.000600  loss: 2.5181 (2.5480)  time: 11.9279  data: 0.1880
+Epoch: [4]  [ 210/1015]  eta: 2:31:04  lr: 0.000600  loss: 2.4231 (2.5421)  time: 11.8431  data: 0.1939
+Epoch: [4]  [ 220/1015]  eta: 2:29:21  lr: 0.000600  loss: 2.4636 (2.5415)  time: 11.4582  data: 0.1894
+Epoch: [4]  [ 230/1015]  eta: 2:27:31  lr: 0.000600  loss: 2.5360 (2.5440)  time: 11.4343  data: 0.1866
+Epoch: [4]  [ 240/1015]  eta: 2:25:43  lr: 0.000600  loss: 2.6224 (2.5461)  time: 11.3927  data: 0.1803
+Epoch: [4]  [ 250/1015]  eta: 2:23:54  lr: 0.000600  loss: 2.6220 (2.5482)  time: 11.4247  data: 0.1794
+Epoch: [4]  [ 260/1015]  eta: 2:22:07  lr: 0.000600  loss: 2.5722 (2.5499)  time: 11.4487  data: 0.1808
+Epoch: [4]  [ 270/1015]  eta: 2:20:10  lr: 0.000600  loss: 2.5317 (2.5493)  time: 11.3145  data: 0.1950
+Epoch: [4]  [ 280/1015]  eta: 2:18:13  lr: 0.000600  loss: 2.5464 (2.5508)  time: 11.1446  data: 0.1962
+Epoch: [4]  [ 290/1015]  eta: 2:16:22  lr: 0.000600  loss: 2.5393 (2.5509)  time: 11.2350  data: 0.1877
+Epoch: [4]  [ 300/1015]  eta: 2:14:47  lr: 0.000600  loss: 2.5348 (2.5501)  time: 11.6896  data: 0.1968
+Epoch: [4]  [ 310/1015]  eta: 2:13:09  lr: 0.000600  loss: 2.5207 (2.5494)  time: 12.0250  data: 0.2004
+Epoch: [4]  [ 320/1015]  eta: 2:11:27  lr: 0.000600  loss: 2.6064 (2.5527)  time: 11.9315  data: 0.1964
+Epoch: [4]  [ 330/1015]  eta: 2:09:45  lr: 0.000600  loss: 2.6027 (2.5518)  time: 11.8692  data: 0.1884
+
+

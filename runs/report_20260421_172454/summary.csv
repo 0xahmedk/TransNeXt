@@ -1,0 +1,2 @@
+run_name,log_file,model,device,data_path,checkpoint,batch_size,eval_batch_size,num_workers,total_batches,last_batch,completed,final_acc1,final_acc5,final_loss,final_images,final_reported_acc1,mean_iter_time_sec,mean_data_time_sec,last_running_acc1,last_running_acc5,last_running_loss
+transnext_micro_in100_zeroshot_20260421_161839,runs/transnext_micro_in100_zeroshot_20260421_161839.log,transnext_micro,cpu,data/imagenet-100,models/transnext_micro_224_1k.pth,16,16,0,313,312,True,87.5,97.86,0.565,5000,87.5,2.637839393939394,0.10535757575757576,87.5,97.86,0.5652

@@ -36,7 +36,7 @@ def train_one_epoch(model: torch.nn.Module, criterion: DistillationLoss,
         # with torch.cuda.amp.autocast():
         #     outputs = model(samples)
         #     loss = criterion(samples, outputs, targets)
-        with torch.cuda.amp.autocast(enabled=not fp32):
+        with torch.cuda.amp.autocast(enabled=(device.type == 'cuda' and not fp32)):
             outputs = model(samples)
             loss = criterion(samples, outputs, targets)
 
@@ -56,7 +56,8 @@ def train_one_epoch(model: torch.nn.Module, criterion: DistillationLoss,
         if update_grad:
             optimizer.zero_grad()
 
-        torch.cuda.synchronize()
+        if device.type == 'cuda':
+            torch.cuda.synchronize()
         if update_grad and model_ema is not None:
             model_ema.update(model)
 
@@ -83,7 +84,7 @@ def evaluate(data_loader, model, device):
         target = target.to(device, non_blocking=True)
 
         # compute output
-        with torch.cuda.amp.autocast():
+        with torch.cuda.amp.autocast(enabled=(device.type == 'cuda')):
             output = model(images)
             loss = criterion(output, target)
 
@@ -104,8 +105,8 @@ def evaluate(data_loader, model, device):
 class NativeScalerAccum:
     state_dict_key = "amp_scaler"
 
-    def __init__(self):
-        self._scaler = torch.cuda.amp.GradScaler()
+    def __init__(self, enabled=True):
+        self._scaler = torch.cuda.amp.GradScaler(enabled=enabled)
 
     def __call__(self, loss, optimizer, clip_grad=None, clip_mode='norm', parameters=None, create_graph=False,
                  update_grad=True):
