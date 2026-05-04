@@ -116,6 +116,10 @@ class AggregatedAttention(nn.Module):
             nn.init.trunc_normal_(torch.empty(num_heads, self.head_dim, self.local_len), mean=0, std=0.02))
         self.learnable_bias = nn.Parameter(torch.zeros(num_heads, 1, self.local_len))
 
+        self.store_attn = False
+        self.last_attn = None
+        self.last_hw = None
+
     def forward(self, x, H, W, relative_pos_index, relative_coords_table):
         B, N, C = x.shape
 
@@ -151,6 +155,9 @@ class AggregatedAttention(nn.Module):
         # Concatenate local & pooled similarity matrices and calculate attention weights through the same Softmax
         attn = torch.cat([attn_local, attn_pool], dim=-1).softmax(dim=-1)
         attn = self.attn_drop(attn)
+        if self.store_attn:
+            self.last_attn = attn.detach()
+            self.last_hw = (H, W)
 
         # Split the attention weights and separately aggregate the values of local & pooled features
         attn_local, attn_pool = torch.split(attn, [self.local_len, self.pool_len], dim=-1)

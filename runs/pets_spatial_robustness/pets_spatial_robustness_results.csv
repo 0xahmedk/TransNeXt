@@ -1,0 +1,4 @@
+resolution,accuracy,fixed_pool_size
+224,56.25,
+256,58.12,7
+384,63.12,7

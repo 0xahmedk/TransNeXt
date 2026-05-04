@@ -1,0 +1,2 @@
+timestamp,activation,loss_type,best_val_acc,train_time_sec
+2026-05-01 00:44:36,relu,ce_ls,53.7749,11248.08

@@ -130,6 +130,10 @@ class Attention(nn.Module):
         self.cpb_act = nn.ReLU(inplace=True)
         self.cpb_fc2 = nn.Linear(512, num_heads, bias=True)
 
+        self.store_attn = False
+        self.last_attn = None
+        self.last_hw = None
+
     def forward(self, x, H, W, relative_pos_index, relative_coords_table):
         B, N, C = x.shape
         qkv = self.qkv(x).reshape(B, -1, 3 * self.num_heads, self.head_dim).permute(0, 2, 1, 3)
@@ -144,6 +148,9 @@ class Attention(nn.Module):
             self.temperature) * self.seq_length_scale) @ F.normalize(k, dim=-1).transpose(-2, -1) + rel_bias
         attn = attn.softmax(dim=-1)
         attn = self.attn_drop(attn)
+        if self.store_attn:
+            self.last_attn = attn.detach()
+            self.last_hw = (H, W)
         x = (attn @ v).transpose(1, 2).reshape(B, N, C)
         x = self.proj(x)
         x = self.proj_drop(x)
